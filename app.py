@@ -847,7 +847,7 @@ def display_annual_schedule_section():
                     <span class="event-status" style="background-color:{PRIMARY_COLOR};">모집중</span>
                 </div>
                 <h3 class="event-theme">제1회: 국민의 삶의 질을 높이는 AI 사회서비스</h3>
-                <p class="event-time"><strong><i class="icon-time">⏰</i> 시간:</strong> 13:30 ~ 17:30</p>
+                <p class="event-time"><strong><i class="icon-time">
                 <p class="event-details">AI 기술을 활용하여 사회서비스의 효율성과 접근성을 혁신하는 기업을 위한 투자 교류의 장입니다. (참석 규모: 약 80명 내외)</p>
                 <a href="#section-application-method" class="card-apply-button custom-button button-primary">세부 정보 확인 및 신청</a>
             </div>
@@ -857,7 +857,7 @@ def display_annual_schedule_section():
                     <span class="event-status" style="background-color:{PRIMARY_COLOR_DARK};">모집예정</span>
                 </div>
                 <h3 class="event-theme">제2회: 돌봄의 공백을 채우는 지역 상생 사회서비스</h3>
-                <p class="event-time"><strong><i class="icon-time">⏰</i> 시간:</strong> 미정</p>
+                <p class="event-time"><strong><i class="icon-time">
                 <p class="event-details">지역 사회의 특성을 반영한 맞춤형 돌봄 서비스 및 지역사회 활성화에 기여하는 기업을 발굴합니다.</p>
                 <a href="#section-application-method" class="card-apply-button custom-button button-primary">관련 정보 더보기</a>
             </div>
@@ -867,7 +867,7 @@ def display_annual_schedule_section():
                     <span class="event-status" style="background-color:{PRIMARY_COLOR_DARK};">모집예정정</span>
                 </div>
                 <h3 class="event-theme">제3회: 국민의 삶을 HEAL하는 사회서비스</h3>
-                <p class="event-time"><strong><i class="icon-time">⏰</i> 시간:</strong> 미정</p>
+                <p class="event-time"><strong><i class="icon-time">
                 <p class="event-details">정신건강, 웰니스, 치유 프로그램 등 국민의 정서적, 신체적 건강 증진을 위한 사회서비스 기업을 지원합니다.</p>
                 <a href="#section-application-method" class="card-apply-button custom-button button-primary">관련 정보 더보기</a>
             </div>
