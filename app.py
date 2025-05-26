@@ -27,7 +27,7 @@ BOX_SHADOW_DARK = "0 8px 16px rgba(0,0,0,0.15)"
 
 HEADER_HEIGHT_PX = 70
 GOOGLE_FORM_URL = "https://forms.gle/6vLUsvaa7XNtTLWz7"
-NOTION_PAGE_URL = "https://socialservice.notion.site/2024-e8a776c6420b41819c77ef0c533bbb3b"
+NOTION_PAGE_URL = "https://sociallink3.streamlit.app/"
 
 # --- 이미지 Base64 인코딩 함수 ---
 def image_to_data_uri(file_path_str):
@@ -587,13 +587,13 @@ def display_participation_guide_section():
         <div class="guide-card-row">
             <div class="guide-card ir-presentation">
                 <h3 class="guide-card-title"><span class="title-icon">📢</span> IR 발표 기업</h3>
-                <p class="guide-card-description">IR 발표를 통해 투자 유치 기회 확대를 필요로 하는 사회서비스 기업 (회차별 10~12개사)</p>
-                <ul><li>IR 발표기업은 투자 유치가 가능한 <strong>‘주식회사’</strong> 형태로 기업 IR 자료 필요</li></ul>
+                <p class="guide-card-description">IR 발표를 통해 투자 유치 기회 확대를 필요로 하는 사회서비스 기업</p>
+                <ul><li>IR 발표기업은 투자 유치가 가능한 <strong>‘주식회사’</strong> 형태로 기업 IR 자료 필요(20장 내외)</li><li>업력/소재지 확인을 위한<strong>‘사업자등록증’</strong>제출 필요</li></ul>
             </div>
             <div class="guide-card">
                 <h3 class="guide-card-title"><span class="title-icon">📰</span> 홍보테이블 운영 기업</h3>
-                <p class="guide-card-description">기업의 비즈니스 모델(BM) 홍보 및 투자자·유관기관과의 네트워킹을 희망하는 사회서비스 기업 (회차별 5~7개사)</p>
-                <ul><li>운영 가능한 테이블만 준비되며, 관련 홍보자료는 참여기업에서 별도 준비</li></ul>
+                <p class="guide-card-description">홍보테이블을 통해 기업의 비즈니스 모델/임팩트 홍보 및 투자자·유관기관과의 네트워킹을 희망하는 사회서비스 기업</p>
+                <ul><li>운영 가능한 테이블만 준비되며, 관련 홍보자료는 참여기업에서 별도 준비</li><li>홍보 자료를 만들기 위한<strong>‘기업 정보’</strong>제출 필요</li></ul>
             </div>
         </div>
         <div class="central-motif-wrapper">
@@ -613,7 +613,7 @@ def display_participation_guide_section():
             <div class="guide-card">
                 <h3 class="guide-card-title"><span class="title-icon">👀</span> 참관 및 네트워킹</h3>
                 <p class="guide-card-description">사회서비스 투자 교류회 참관 및 네트워킹을 희망하는 기업 또는 기관</p>
-                <ul><li>별도 신청 절차는 '신청 방법' 섹션 또는 공지사항을 참고해주십시오.</li></ul>
+                <ul><li>직접적인 투자자 밋업, IR 진행은 아니지만 기업/기관 발표 참관 가능</li></ul>
             </div>
         </div>
     </div> </section>
@@ -778,63 +778,141 @@ def display_event_composition_section():
 
 # --- 5. 2025년 투자 교류회 연간 일정 ---
 def display_annual_schedule_section():
-    # events_data는 이제 HTML 내부에 직접 작성됩니다.
+    # "모집예정" 상태를 위한 색상 (기존 글로벌 색상 활용 또는 신규 정의)
+    STATUS_COLOR_SCHEDULED = TEXT_COLOR_MUTED # 모집예정 상태 배지 색상 (회색 계열)
+
+    # HTML 구조 및 내용 수정
+    # 카드 1: 정상, 시간 정보 포함
+    # 카드 2: 상태 "모집예정", 시간 "미정"
+    # 카드 3: event-date-venue 추가, 상태 "모집예정", 시간 "미정"
     annual_schedule_html = f"""
     <style>
         #section-annual-schedule {{ background-color: var(--white-color); }}
         .event-schedule-grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1fr; /* 모바일 기본 1열 */
+            gap: 35px;
         }}
+        /* 태블릿: 2열 */
+        @media (min-width: 768px) {{
+            .event-schedule-grid {{ grid-template-columns: repeat(2, 1fr); }}
+        }}
+        /* 데스크탑: 3열 (요청 1 반영) */
+        @media (min-width: 1024px) {{
+            .event-schedule-grid {{ grid-template-columns: repeat(3, 1fr); }}
+        }}
+
         .event-schedule-card {{
             background-color: var(--white-color);
-            border-radius: var(--border-radius-lg); padding: 35px;
-            box-shadow: var(--box-shadow-medium); border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-lg);
+            padding: 30px 25px; /* 패딩 조정 */
+            box-shadow: var(--box-shadow-light);
+            border: 1px solid var(--border-color);
             display: flex; flex-direction: column;
-            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
             animation: cardPopIn 0.5s ease-out forwards; opacity: 0;
-            border-left: 5px solid {PRIMARY_COLOR_LIGHT};
+            min-height: 430px; /* 모든 카드의 최소 높이를 지정하여 높이 일관성 확보 시도 */
         }}
         .event-schedule-card:hover {{
-            transform: translateY(-12px); box-shadow: var(--box-shadow-dark);
-            border-left-color: {PRIMARY_COLOR_DARK};
+            transform: translateY(-8px); /* 호버 효과 약간 조정 */
+            box-shadow: var(--box-shadow-dark); /* 그림자 강화 */
+            border-color: {PRIMARY_COLOR};
         }}
+        
+        /* 요청 2: 모집예정 카드 비활성화 느낌 */
+        .event-schedule-card.card-disabled-look {{
+            opacity: 0.8; /* 약간 더 흐리게 */
+            background-color: {BACKGROUND_COLOR_LIGHT_GRAY}; /* 배경색도 약간 변경 */
+        }}
+        .event-schedule-card.card-disabled-look:hover {{
+            transform: translateY(-4px); /* 비활성화 카드는 호버 효과 약하게 */
+            box-shadow: var(--box-shadow-medium);
+            border-color: var(--border-color);
+        }}
+
         .event-schedule-card .card-header {{
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center; /* 요청 1: event-date-venue 텍스트 중앙 정렬 위해 */
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
         }}
         .event-date-venue {{
-            font-size: 0.95rem; font-weight: 600; color: var(--text-muted);
+            font-size: 1rem; /* 크기 조정 */
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
         }}
         .event-status {{
-            font-size: 0.85rem; font-weight: 700; color: var(--white-color);
-            padding: 6px 14px; border-radius: 25px;
+            font-size: 0.88rem;
+            font-weight: 700; color: var(--white-color);
+            padding: 7px 16px;
+            border-radius: 20px;
         }}
         .event-theme {{
-            font-size: 1.5rem; font-weight: 700; color: var(--primary-color-dark);
-            margin-bottom: 15px; line-height: 1.45;
+            font-size: 1.5rem; /* 크기 유지 또는 약간 조정 */
+            font-weight: 700;
+            color: var(--primary-color-dark);
+            margin-bottom: 18px; /* 간격 조정 */
+            line-height: 1.4;
+            font-style: normal !important; /* 이탤릭체 명시적 해제 */
+            text-align: center;
+            min-height: calc(1.4em * 2 * 1.4); /* 약 2줄 높이 확보 (테마 길이에 따라 조정) */
         }}
         .event-time {{
-            font-size: 1rem; color: var(--text-secondary); margin-bottom: 18px;
+            font-size: 0.95rem; /* 크기 약간 작게 */
+            color: var(--text-secondary); margin-bottom: 20px;
             display: flex; align-items: center;
+            justify-content: center; /* 시간 정보 중앙 정렬 */
         }}
-        .event-time .icon-time {{ margin-right: 10px; color: {PRIMARY_COLOR_DARK}; font-size: 1.1em; }}
+        .event-time .icon-time-emoji {{
+            margin-right: 8px; color: {PRIMARY_COLOR_DARK}; font-size: 1.1em;
+        }}
         .event-details {{
-            font-size: 1rem; color: var(--text-secondary); line-height: 1.75;
-            margin-bottom: 30px; flex-grow: 1;
+            font-size: 0.9rem; /* 폰트 크기 더 작게 */
+            color: var(--text-secondary); line-height: 1.65; /* 줄간격 조정 */
+            margin-bottom: 25px; /* 간격 조정 */
+            flex-grow: 1;
+            text-align: left;
+             min-height: calc(1.65em * 3); /* 약 3줄 높이 확보 */
         }}
         .card-apply-button {{
             margin-top: auto; text-align: center; width: 100%;
-            padding-top: 15px; padding-bottom: 15px; font-size: 1.05rem;
+            padding-top: 14px; padding-bottom: 14px;
+            font-size: 1rem; /* 크기 조정 */
         }}
+
+        /* 요청 3: 비활성화된 버튼 스타일 */
+        .custom-button.button-disabled {{
+            background-color: #d8d8d8 !important; /* 더 명확한 비활성화 배경색 */
+            color: #888888 !important; /* 비활성화 텍스트 색 */
+            border-color: #d8d8d8 !important;
+            box-shadow: none !important;
+            pointer-events: none;
+            cursor: not-allowed;
+        }}
+        .custom-button.button-disabled:hover {{
+            background-color: #d8d8d8 !important; /* 호버 시 변경 없음 */
+            transform: none !important;
+            box-shadow: none !important;
+        }}
+
         @keyframes cardPopIn {{
-            from {{ opacity: 0; transform: translateY(25px) scale(0.96); }}
+            from {{ opacity: 0; transform: translateY(20px) scale(0.98); }}
             to {{ opacity: 1; transform: translateY(0) scale(1); }}
         }}
-        @media (max-width: 768px) {{
-            .event-theme {{ font-size: 1.3rem; }}
-            .event-details {{ font-size: 0.95rem; }}
+        
+        @media (max-width: 1023px) and (min-width: 768px) {{ /* 태블릿 */
+             .event-schedule-grid {{ grid-template-columns: repeat(2, 1fr); }}
+             .event-schedule-card {{ min-height: 450px; }} /* 태블릿에서 최소 높이 조정 */
+        }}
+        @media (max-width: 767px) {{ /* 모바일 */
+             .event-schedule-grid {{ grid-template-columns: 1fr; }}
+            .event-theme {{ font-size: 1.35rem; min-height: calc(1.4em * 2 * 1.35); }}
+            .event-details {{ font-size: 0.9rem; min-height: calc(1.65em * 4);}} /* 모바일에서 상세 내용 줄 수 더 확보 */
+            .event-schedule-card {{ padding: 25px; min-height: auto; /* 모바일에선 자동 높이 */ }}
         }}
     </style>
     <section id="section-annual-schedule" class="section">
@@ -847,37 +925,35 @@ def display_annual_schedule_section():
                     <span class="event-status" style="background-color:{PRIMARY_COLOR};">모집중</span>
                 </div>
                 <h3 class="event-theme">제1회: 국민의 삶의 질을 높이는 AI 사회서비스</h3>
-                <p class="event-time"><strong><i class="icon-time">
+                <p class="event-time"><span class="icon-time-emoji">⏰</span><strong>시간:</strong> 13:30 ~ 17:30</p>
                 <p class="event-details">AI 기술을 활용하여 사회서비스의 효율성과 접근성을 혁신하는 기업을 위한 투자 교류의 장입니다. (참석 규모: 약 80명 내외)</p>
                 <a href="#section-application-method" class="card-apply-button custom-button button-primary">세부 정보 확인 및 신청</a>
             </div>
-            <div class="event-schedule-card" style="animation-delay: 0.15s;">
+            <div class="event-schedule-card card-disabled-look" style="animation-delay: 0.15s;">
                 <div class="card-header">
                     <span class="event-date-venue">2025. 8월 예정 / 대전</span>
-                    <span class="event-status" style="background-color:{PRIMARY_COLOR_DARK};">모집예정</span>
+                    <span class="event-status" style="background-color:{STATUS_COLOR_SCHEDULED};">모집예정</span>
                 </div>
                 <h3 class="event-theme">제2회: 돌봄의 공백을 채우는 지역 상생 사회서비스</h3>
-                <p class="event-time"><strong><i class="icon-time">
+                <p class="event-time"><span class="icon-time-emoji">⏰</span><strong>시간:</strong> 미정</p>
                 <p class="event-details">지역 사회의 특성을 반영한 맞춤형 돌봄 서비스 및 지역사회 활성화에 기여하는 기업을 발굴합니다.</p>
-                <a href="#section-application-method" class="card-apply-button custom-button button-primary">관련 정보 더보기</a>
+                <a href="#section-application-method" class="card-apply-button custom-button button-disabled">향후 모집 예정</a>
             </div>
-            <div class="event-schedule-card" style="animation-delay: 0.3s;">
+            <div class="event-schedule-card card-disabled-look" style="animation-delay: 0.3s;">
                 <div class="card-header">
-                    <span class="event-date-venue">2025. 9. 9.(화) / aT센터 (서울 강남구)</span>
-                    <span class="event-status" style="background-color:{PRIMARY_COLOR_DARK};">모집예정정</span>
+                    <span class="event-date-venue">2025. 9. 9.(화) / aT센터 (서울 강남구)</span> 
+                  <span class="event-status" style="background-color:{STATUS_COLOR_SCHEDULED};">모집예정</span>
                 </div>
                 <h3 class="event-theme">제3회: 국민의 삶을 HEAL하는 사회서비스</h3>
-                <p class="event-time"><strong><i class="icon-time">
+                <p class="event-time"><span class="icon-time-emoji">⏰</span><strong>시간:</strong> 미정</p>
                 <p class="event-details">정신건강, 웰니스, 치유 프로그램 등 국민의 정서적, 신체적 건강 증진을 위한 사회서비스 기업을 지원합니다.</p>
-                <a href="#section-application-method" class="card-apply-button custom-button button-primary">관련 정보 더보기</a>
+                <a href="#section-application-method" class="card-apply-button custom-button button-disabled">향후 모집 예정</a>
             </div>
         </div>
     </section>
     """
     st.markdown(annual_schedule_html, unsafe_allow_html=True)
 
-
-# --- 6. 신청 방법 ---
 def display_application_method_section():
     application_note = "※ 교류회 주제 및 장소 여건에 따라 선착순 마감될 수 있으며, 선정 기업(기관) 별도 통보 예정" # 요청 2
     application_deadline_text = "2025년 6월 9일(금)까지"
@@ -1026,6 +1102,7 @@ def display_application_method_section():
     </section>
     """
     st.markdown(application_html, unsafe_allow_html=True)
+
 
 # --- 7. FAQ 섹션 --- (디자인 고도화)
 def display_faq_section():
