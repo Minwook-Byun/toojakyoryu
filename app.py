@@ -604,7 +604,7 @@ def display_participation_guide_section():
         <div class="guide-card-row">
             <div class="guide-card">
                 <h3 class="guide-card-title"><span class="title-icon">🤝</span> 투자자 밋업 기업</h3>
-                <p class="guide-card-description">라운드 테이블 미팅에 참여하여 투자자(VC)와의 투자 상담 및 밋업을 희망하는 사회서비스 기업 (회차별 8개사)</p>
+                <p class="guide-card-description">라운드 테이블 미팅에 참여하여 투자자(VC)와의 투자 상담 및 밋업을 희망하는 사회서비스 기업</p>
                 <ul>
                     <li>라운드 테이블 미팅(16:00~17:20)에 참여하여 투자자와 1:1 투자 상담 진행</li>
                     <li>밋업 전 참석하여 행사 참관 가능</li>
@@ -844,6 +844,7 @@ def display_annual_schedule_section():
             font-weight: 600;
             color: var(--text-primary);
             margin-bottom: 10px;
+            text-align: center ; 
         }}
         .event-status {{
             font-size: 0.88rem;
@@ -875,8 +876,9 @@ def display_annual_schedule_section():
             color: var(--text-secondary); line-height: 1.65; /* 줄간격 조정 */
             margin-bottom: 25px; /* 간격 조정 */
             flex-grow: 1;
-            text-align: left;
+            text-align: center;
              min-height: calc(1.65em * 3); /* 약 3줄 높이 확보 */
+             
         }}
         .card-apply-button {{
             margin-top: auto; text-align: center; width: 100%;
@@ -921,31 +923,28 @@ def display_annual_schedule_section():
         <div class="event-schedule-grid">
             <div class="event-schedule-card" style="animation-delay: 0s;">
                 <div class="card-header">
-                    <span class="event-date-venue">2025. 6. 25.(수) / 서울</span>
                     <span class="event-status" style="background-color:{PRIMARY_COLOR};">모집중</span>
                 </div>
                 <h3 class="event-theme">제1회: 국민의 삶의 질을 높이는 AI 사회서비스</h3>
-                <p class="event-time"><span class="icon-time-emoji">⏰</span><strong>시간:</strong> 13:30 ~ 17:30</p>
+                    <span class="event-date-venue">2025. 6. 25.(수) / 서울</span>
                 <p class="event-details">AI 기술을 활용하여 사회서비스의 효율성과 접근성을 혁신하는 기업을 위한 투자 교류의 장입니다. (참석 규모: 약 80명 내외)</p>
                 <a href="#section-application-method" class="card-apply-button custom-button button-primary">세부 정보 확인 및 신청</a>
             </div>
             <div class="event-schedule-card card-disabled-look" style="animation-delay: 0.15s;">
                 <div class="card-header">
-                    <span class="event-date-venue">2025. 8월 예정 / 대전</span>
                     <span class="event-status" style="background-color:{STATUS_COLOR_SCHEDULED};">모집예정</span>
                 </div>
                 <h3 class="event-theme">제2회: 돌봄의 공백을 채우는 지역 상생 사회서비스</h3>
-                <p class="event-time"><span class="icon-time-emoji">⏰</span><strong>시간:</strong> 미정</p>
+                <p class="event-time"><span class="event-date-venue">2025. 8월 예정 / 대전 </span> </p>
                 <p class="event-details">지역 사회의 특성을 반영한 맞춤형 돌봄 서비스 및 지역사회 활성화에 기여하는 기업을 발굴합니다.</p>
                 <a href="#section-application-method" class="card-apply-button custom-button button-disabled">향후 모집 예정</a>
             </div>
             <div class="event-schedule-card card-disabled-look" style="animation-delay: 0.3s;">
                 <div class="card-header">
-                    <span class="event-date-venue">2025. 9. 9.(화) / aT센터 (서울 강남구)</span> 
                   <span class="event-status" style="background-color:{STATUS_COLOR_SCHEDULED};">모집예정</span>
                 </div>
                 <h3 class="event-theme">제3회: 국민의 삶을 HEAL하는 사회서비스</h3>
-                <p class="event-time"><span class="icon-time-emoji">⏰</span><strong>시간:</strong> 미정</p>
+                <p class="event-time"><strong>2025. 9. 9.(화) / aT센터</strong></p>
                 <p class="event-details">정신건강, 웰니스, 치유 프로그램 등 국민의 정서적, 신체적 건강 증진을 위한 사회서비스 기업을 지원합니다.</p>
                 <a href="#section-application-method" class="card-apply-button custom-button button-disabled">향후 모집 예정</a>
             </div>
