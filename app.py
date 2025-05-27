@@ -292,7 +292,6 @@ def display_hero_section():
 
 # --- 2. 행사 소개 및 목적 ---
 def display_introduction_section():
-    # HTML과 CSS를 하나의 문자열로 통합
     intro_html = f"""
     <style>
         #section-introduction {{ background-color: var(--white-color); }}
@@ -334,9 +333,6 @@ def display_introduction_section():
                         <div class="organizer-logo-item">{f'<img src="{LOGO_MYSC_DATA_URI}" alt="엠와이소셜컴퍼니(MYSC)">' if LOGO_MYSC_DATA_URI else ""}</div>
                     </div>
                 </div>
-            </div>
-            <div class="intro-image-placeholder">
-                <span>대표 이미지 또는 네트워킹 장면 (예시)</span>
             </div>
         </div>
     </section>
