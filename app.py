@@ -201,7 +201,6 @@ def display_hero_section():
     hero_catchphrase_html = """
         <p style="font-size: 1.5rem; margin-bottom: 0.5em;">사회서비스 기업-투자자-유관기관 연결의 장!</p>
         <p style="font-size: 1.5rem; margin-bottom: 1.5em;">투자 유치 및 홍보를 위한 기회의 장!</p>
-        <p style="font-size: 1.2rem;">혁신적인 사회서비스의 성장과 투자를 연결하는 네트워킹의 장입니다.</p>
     """
     hero_cta_button_text = "🚀 참가 신청 바로가기"
 
@@ -324,7 +323,7 @@ def display_introduction_section():
         <div class="intro-grid-container">
             <div class="intro-text-content">
                 <h3>투자와 협력의 기회를 창출하는 플랫폼</h3>
-                <p>「2025 사회서비스 투자 교류회」는 사회서비스 분야의 혁신 기업들이 투자 유치 기회를 확대하고, 투자자 및 유관기관과의 긴밀한 네트워킹을 통해 실질적인 성장을 도모할 수 있도록 마련된 연결의 장입니다. 보건복지부, 중앙사회서비스원, 그리고 엠와이소셜컴퍼니(MYSC)가 함께합니다.</p>
+                <p>보건복지부, 중앙사회서비스원, 그리고 엠와이소셜컴퍼니(MYSC)가 함께 하는 2025 사회서비스 투자 교류회는 사회서비스 분야의 혁신 기업들이 투자 유치 기회를 확대하고, 투자자 및 유관기관과의 긴밀한 네트워킹을 통해 실질적인 성장을 도모할 수 있도록 마련된 연결의 장입니다.</p>
                 <p>다양한 사회서비스 기업을 발굴하고 임팩트 투자 연계를 통해 기업의 스케일업을 지원하며, 궁극적으로 국민 모두에게 고품질의 사회서비스가 제공될 수 있는 건강한 생태계 조성을 목표로 합니다.</p>
                  <div class="organizers-section">
                     <div class="organizer-logos-flex">
@@ -548,11 +547,11 @@ def display_application_method_section():
         <h2 class="section-title">참가 신청 방법</h2>
         <div class="application-content">
             <div class="application-deadline-highlight">
-                ✨ 참가 신청 마감: 6월 11일(수)까지 ✨
+                1회차 참가 신청 마감: 6월 11일(수)까지
             </div>
             <div class="application-step">
-                <h3 class="application-step-title">Step 1: 참여 정보 확인 및 온라인 신청서 작성</h3>
-                <p>IR발표, 홍보테이블 운영, 투자자 밋업 참여를 희망하시는 기업은 아래 '온라인 참가 신청하기' 버튼을 통해 신청 페이지로 이동 후, 기업 정보를 기재하고 제출합니다.</p>
+                <h3 class="application-step-title">Step 1: 참여 유형 확인 & 온라인 신청서 작성</h3>
+                <p> <strong>IR발표, 홍보테이블 운영, 투자자 밋업 </strong> 참여를 희망하시는 기업은 아래 '온라인 참가 신청하기' 버튼을 통해 신청 페이지로 이동 후, 기업 정보를 기재하고 제출합니다.</p>
                 <p><a href="{GOOGLE_FORM_URL}" target="_blank" class="form-link">➡️ 온라인 참가 신청하기 (Google Form)</a></p>
             </div>
             <div class="application-step">
