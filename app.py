@@ -533,8 +533,9 @@ def display_application_method_section():
             box-shadow: var(--box-shadow-dark);
         }}
         .download-area {{ margin-top: 35px; }} /* 제출서류 안내 섹션과의 간격 조정 */
-        .download-links-title {{ font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom: 35px; text-align:center; }}
-        .download-links-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 30px; justify-content: center; max-width: 850px; margin: 0 auto; }}
+        .download-links-title {{ font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom:0px; text-align:center; }}
+        .download-links-span {{ font-size: 0.8rem; font-weight: 400; color: var(--text-primary); margin-bottom:100px; text-align:center; }}
+        .download-links-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 30px; justify-content: center; max-width: 850px; margin: 0 auto; }}
         .download-link-button {{ display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: transparent; color: {PRIMARY_COLOR_DARK} !important; padding: 28px 20px; border-radius: var(--border-radius-md); text-decoration: none; font-size: 1.05rem; font-weight: 600; border: 2px solid {PRIMARY_COLOR_DARK}; box-shadow: none; transition: all 0.3s ease; text-align: center; min-height: 100px; }}
         .download-link-button:hover {{ background-color: {PRIMARY_COLOR_DARK}; color: var(--white-color) !important; border-color: {PRIMARY_COLOR_DARK}; transform: translateY(-6px) scale(1.03); box-shadow: var(--box-shadow-medium); }}
         .download-link-button .icon {{ font-size: 2.2em; margin-bottom: 15px; }}
@@ -572,7 +573,7 @@ def display_application_method_section():
                 <h5>📰 홍보테이블 운영 기업</h5>
                 <ul>
                     <li>참가신청서 (홍보기업용)</li>
-                    <li>기업 정보 자료 (홍보물 제작에 필요한 기본 정보)</li>
+                    <li>홍보물 제작에 필요한 기본 정보(구글폼 및 신청서 내의 내용)</li>
                     <li>개인정보 수집·이용 동의서</li>
                 </ul>
                 <hr>
@@ -588,8 +589,10 @@ def display_application_method_section():
             <div>      
             <div class="download-area">
                 <p class="download-links-title">주요 신청 양식 다운로드</p>
+                 <span class="download-links-span">참가 유형별 참가신청서 1부와 개인정보 이용동의서 1부를 구글폼에 제출 부탁드립니다</span>
                 <div class="download-links-grid">
                     {f'<a href="{NOTION_PAGE_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>참가신청서<br>(발표기업용)</a>' if NOTION_PAGE_URL else ""}
+                    {f'<a href="{NOTION_PAGE_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>참가신청서<br>(밋업기업용)</a>' if NOTION_PAGE_URL else ""}
                     {f'<a href="{NOTION_PAGE_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>참가신청서<br>(홍보기업용)</a>' if NOTION_PAGE_URL else ""}
                     {f'<a href="{NOTION_PAGE_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>개인정보<br>이용동의서</a>' if NOTION_PAGE_URL else ""}
                 </div>
