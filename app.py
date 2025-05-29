@@ -585,7 +585,6 @@ def display_application_method_section():
                     <li>참가신청서 (해당 시, 또는 온라인 신청으로 갈음)</li>
                     <li>개인정보 수집·이용 동의서</li>
                 </ul>
-                <p class="notice">* 위 서류는 온라인 신청서 내 안내에 따라 업로드하거나 지정된 이메일로 제출해 주십시오.</p>
                 <p class="notice">* 참관 및 네트워킹 참여는 본 신청 페이지를 통하지 않으며, 별도 안내될 예정입니다.</p>
             </div>
         </div>
