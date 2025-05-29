@@ -18,7 +18,7 @@ TEXT_COLOR_PRIMARY = "#212529"
 TEXT_COLOR_SECONDARY = "#495057"
 TEXT_COLOR_MUTED = "#6c757d"
 BACKGROUND_COLOR_LIGHT_GRAY = "#f8f9fa"
-BACKGROUND_COLOR_DARK_GRAY = "#292E33"
+BACKGROUND_COLOR_DARK_GRAY = "#000000"
 WHITE_COLOR = "#FFFFFF"
 BORDER_COLOR = "#e0e0e0"
 BOX_SHADOW_LIGHT = "0 4px 8px rgba(0, 0, 0, 0.05)"
@@ -188,7 +188,7 @@ def inject_global_styles_and_header():
         }}
     </style>
     <div class="fixed-header"><div class="header-content"><div class="header-logo-group">{logos_html}</div><nav class="header-nav">{nav_html_elements}</nav></div></div>
-    <a href="{GOOGLE_FORM_URL}" target="_blank" class="fab"><span class="fab-icon">📝</span> 참가 신청하기</a>
+    <a href="https://forms.gle/HLUu8cwfU4STHgF16" target="_blank" class="fab"><span class="fab-icon">📝</span> 참가 신청하기</a>
     """
     st.markdown(global_styles, unsafe_allow_html=True)
 
@@ -280,7 +280,7 @@ def display_hero_section():
             <p><span class="info-label">신청마감:</span> <span class="deadline">{application_deadline}</span></p>
         </div>
         <div class="hero-cta-button-container">
-            <a href="#section-application-method" class="hero-cta-button custom-button">
+            <a href="https://forms.gle/HLUu8cwfU4STHgF16" class="hero-cta-button custom-button">
                 {hero_cta_button_text}
             </a>
         </div>
@@ -508,7 +508,6 @@ def display_application_method_section():
                 <li>참가신청서 (해당 시, 또는 온라인 신청으로 갈음)</li>
                 <li>개인정보 수집·이용 동의서</li>
             </ul>
-            <p class="notice">* 위 서류는 온라인 신청서 내 안내에 따라 업로드하거나 지정된 이메일로 제출해 주십시오.</p>
             <p class="notice">* 참관 및 네트워킹 참여는 본 신청 페이지를 통하지 않으며, 별도 안내될 예정입니다.</p>
         </div>
     </div>
@@ -535,7 +534,7 @@ def display_application_method_section():
         .download-area {{ margin-top: 35px; }} /* 제출서류 안내 섹션과의 간격 조정 */
         .download-links-title {{ font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom:0px; text-align:center; }}
         .download-links-span {{ font-size: 0.8rem; font-weight: 400; color: var(--text-primary); margin-bottom:100px; text-align:center; }}
-        .download-links-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 30px; justify-content: center; max-width: 850px; margin: 0 auto; }}
+        .download-links-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 30px; justify-content: center; max-width: 200px; margin: 0 auto; }}
         .download-link-button {{ display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: transparent; color: {PRIMARY_COLOR_DARK} !important; padding: 28px 20px; border-radius: var(--border-radius-md); text-decoration: none; font-size: 1.05rem; font-weight: 600; border: 2px solid {PRIMARY_COLOR_DARK}; box-shadow: none; transition: all 0.3s ease; text-align: center; min-height: 100px; }}
         .download-link-button:hover {{ background-color: {PRIMARY_COLOR_DARK}; color: var(--white-color) !important; border-color: {PRIMARY_COLOR_DARK}; transform: translateY(-6px) scale(1.03); box-shadow: var(--box-shadow-medium); }}
         .download-link-button .icon {{ font-size: 2.2em; margin-bottom: 15px; }}
@@ -553,7 +552,7 @@ def display_application_method_section():
             <div class="application-step">
                 <h3 class="application-step-title">Step 1: 참여 유형 확인 & 온라인 신청서 작성</h3>
                 <p> <strong>IR발표, 홍보테이블 운영, 투자자 밋업 </strong> 참여를 희망하시는 기업은 아래 '온라인 참가 신청하기' 버튼을 통해 신청 페이지로 이동 후, 기업 정보를 기재하고 제출합니다.</p>
-                <p><a href="{GOOGLE_FORM_URL}" target="_blank" class="form-link">➡️ 온라인 참가 신청하기 (Google Form)</a></p>
+                <p><a href="https://forms.gle/HLUu8cwfU4STHgF16" target="_blank" class="form-link">➡️ 온라인 참가 신청하기 (Google Form)</a></p>
             </div>
             <div class="application-step">
                 <h3 class="application-step-title">Step 2: 제출 서류 준비 및 업로드/이메일 제출</h3>
@@ -591,10 +590,7 @@ def display_application_method_section():
                 <p class="download-links-title">주요 신청 양식 다운로드</p>
                  <span class="download-links-span">참가 유형별 참가신청서 1부와 개인정보 이용동의서 1부를 구글폼에 제출 부탁드립니다</span>
                 <div class="download-links-grid">
-                    {f'<a href="{NOTION_PAGE_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>참가신청서<br>(발표기업용)</a>' if NOTION_PAGE_URL else ""}
-                    {f'<a href="{NOTION_PAGE_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>참가신청서<br>(밋업기업용)</a>' if NOTION_PAGE_URL else ""}
-                    {f'<a href="{NOTION_PAGE_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>참가신청서<br>(홍보기업용)</a>' if NOTION_PAGE_URL else ""}
-                    {f'<a href="{NOTION_PAGE_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>개인정보<br>이용동의서</a>' if NOTION_PAGE_URL else ""}
+                    {f'<a href="https://drive.google.com/uc?export=download&id=105h0rjC5FIzQlY9xmavx0cWnrkS6xH15" target="_blank" class="download-link-button"><span class="icon">📄</span>신청서식<br>(공통)</a>' if NOTION_PAGE_URL else ""}
                 </div>
             </div>
             <div class="application-notice">
@@ -726,7 +722,7 @@ def display_faq_section():
 
 # --- 8. 문의처 ---
 def display_contact_section():
-    contact_email = "social.link.academy@gmail.com"
+    contact_email = "kcpassinvest@gmail.com"
     phone_number = "02-499-5111"
     operator_name = "프로그램 운영 사무국 (MYSC)"
     # (문의처 HTML 및 내부 CSS는 이전 답변과 동일하게 유지 - 구조 변경 없음)
