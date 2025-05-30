@@ -540,7 +540,7 @@ def display_application_method_section():
         .download-area {{ margin-top: 35px; }} /* 제출서류 안내 섹션과의 간격 조정 */
         .download-links-title {{ font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom:0px; text-align:center; }}
         .download-links-span {{ font-size: 0.8rem; font-weight: 400; color: var(--text-primary); margin-bottom:100px; text-align:center; }}
-        .download-links-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 30px; justify-content: center; max-width: 200px; margin: 0 auto; }}
+        .download-links-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 30px; justify-content: center; max-width: 200px; margin-bottom:100px; margin: 0 auto; }}
         .download-link-button {{ display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: transparent; color: {PRIMARY_COLOR_DARK} !important; padding: 28px 20px; border-radius: var(--border-radius-md); text-decoration: none; font-size: 1.05rem; font-weight: 600; border: 2px solid {PRIMARY_COLOR_DARK}; box-shadow: none; transition: all 0.3s ease; text-align: center; min-height: 100px; }}
         .download-link-button:hover {{ background-color: {PRIMARY_COLOR_DARK}; color: var(--white-color) !important; border-color: {PRIMARY_COLOR_DARK}; transform: translateY(-6px) scale(1.03); box-shadow: var(--box-shadow-medium); }}
         .download-link-button .icon {{ font-size: 2.2em; margin-bottom: 15px; }}
@@ -557,26 +557,33 @@ def display_application_method_section():
             </div>
             <div class="application-step">
                 <h3 class="application-step-title">Step 1: 참가 유형 확인 & 온라인 신청서 작성</h3>
-                <p> <strong>IR발표, 홍보테이블 운영, 투자자 밋업 </strong> 참가가를 희망하시는 기업은 아래 '온라인 참가 신청하기' 버튼을 통해 신청 페이지로 이동 후, 기업 정보를 기재하고 제출합니다.</p>
+                <p> <strong>IR발표, 홍보테이블 운영, 투자자 밋업 </strong> 참가를 희망하시는 기업은 아래 '온라인 참가 신청하기' 버튼을 통해 <br> 신청 페이지로 이동 후, 참가 유형을 확인하고 온라인 신청서 작성</p>
                 <p><a href="https://forms.gle/HLUu8cwfU4STHgF16" target="_blank" class="form-link">➡️ 온라인 참가 신청하기 (Google Form)</a></p>
             </div>
             <div class="application-step">
                 <h3 class="application-step-title">Step 2: 제출 서류 준비 및 업로드</h3>
-                <p>참가 유형에 맞는 신청서 및 필요 서류를 아래에서 다운로드 받아 작성 후, 온라인 신청서 내 안내에 따라 업로드 해주십시오.</p>
+                <p>'참가신청서 및 개인정보 동의서' 다운로드 및 작성 후 참가 유형별 제출 서류와 함께 온라인 신청서에 업로드.</p>
+            </div>
+             <div class="download-area">
+                <p class="download-links-title">주요 신청 양식 다운로드</p>
+                 <span class="download-links-span">참가 유형별 참가신청서 1부와 개인정보 이용동의서 1부를 구글폼에 제출 부탁드립니다</span>
+                <div class="download-links-grid">
+                    {f'<a href="https://drive.google.com/uc?export=download&id=1sUNcIjQd6uCCc8qHdhqZjKGIvExhMsil" target="_blank" class="download-link-button"><span class="icon">📄</span>신청서식<br>(공통)</a>' if NOTION_PAGE_URL else ""}
+                </div>
             </div>
              <div class="required-docs-section"> 
             <h4>Step 2: 참가 유형별 제출 서류 안내</h4>
             <div>
                 <h5>📢 IR 발표 기업</h5>
                 <ul>
-                    <li>참가신청서 및 개인정보 동의서(하단 서식)</li>
+                    <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
                     <li>기업 IR 자료 (발표 : 7분, 질의 응답 : 3분)</li>
                     <li>사업자등록증 사본</li>
                 </ul>
                 <hr>
                 <h5>📰 홍보테이블 운영 기업</h5>
                 <ul>
-                    <li>참가신청서 및 개인정보 동의서(하단 서식)</li>
+                    <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
                     <li>기업 IR 자료 (VC 밋업용)</li>
                     <li>홍보물 제작에 필요한 기본 정보</li>
                     <li>사업자등록증 사본</li>
@@ -584,7 +591,7 @@ def display_application_method_section():
                 <hr>
                 <h5>🤝 투자자 밋업 기업</h5>
                 <ul>
-                    <li>참가신청서 및 개인정보 동의서(하단 서식)</li>
+                    <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
                     <li>기업 IR 자료 (VC 밋업용)</li>
                     <li>사업자등록증 사본</li>
                 </ul>
@@ -592,13 +599,6 @@ def display_application_method_section():
             </div>
         </div>
             <div>      
-            <div class="download-area">
-                <p class="download-links-title">주요 신청 양식 다운로드</p>
-                 <span class="download-links-span">참가 유형별 참가신청서 1부와 개인정보 이용동의서 1부를 구글폼에 제출 부탁드립니다</span>
-                <div class="download-links-grid">
-                    {f'<a href="https://drive.google.com/uc?export=download&id=1sUNcIjQd6uCCc8qHdhqZjKGIvExhMsil" target="_blank" class="download-link-button"><span class="icon">📄</span>신청서식<br>(공통)</a>' if NOTION_PAGE_URL else ""}
-                </div>
-            </div>
             <div class="application-notice">
                 <p><strong>[유의사항]</strong><br>{application_note}</p>
             </div>
