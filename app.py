@@ -391,7 +391,7 @@ def display_participation_guide_section():
                 </div>
                 <div class="guide-card">
                     <h3 class="guide-card-title"><span class="title-icon">🤝</span> 투자자 밋업 기업</h3>
-                    <p class="guide-card-description">라운드 테이블 미팅(16:00~17:20)에 <br> 참여하여 투자자와의 1:1 투자 상담 및 <br> 밋업을 희망하는 사회서비스 기업</p>
+                    <p class="guide-card-description">라운드 테이블 미팅(16:00~17:20)에 <br> 참가하여 투자자와의 1:1 투자 상담 및 <br> 밋업을 희망하는 사회서비스 기업</p>
                 </div>
             </div>
             {""} 
@@ -425,7 +425,7 @@ def display_event_composition_section():
         <div class="timeline-wrapper">
             <div class="timeline-item" style="animation-delay: 0s;"> <div class="timeline-icon-wrapper"><div class="timeline-icon">📝</div></div> <div class="timeline-content-card"> <span class="time-duration-badge">13:00 - 13:30 (30분)</span> <h4 class="item-title-text">참가자 등록 및 사전 네트워킹</h4> <p class="item-details-text">행사장 도착, 명찰 수령 및 자료 확인, 자유로운 분위기 속 사전 교류의 시간입니다.</p> </div> </div>
             <div class="timeline-item" style="animation-delay: 0.1s;"> <div class="timeline-icon-wrapper"><div class="timeline-icon">🎉</div></div> <div class="timeline-content-card"> <span class="time-duration-badge">13:30 - 14:10 (40분)</span> <h4 class="item-title-text">개회식 및 사업 안내</h4> <p class="item-details-text">개회 선언, 주최/주관기관 환영사 및 축사, 투자 교류회 사업 소개, 기념 단체 사진 촬영이 진행됩니다.</p> </div> </div>
-            <div class="timeline-item" style="animation-delay: 0.2s;"> <div class="timeline-icon-wrapper"><div class="timeline-icon">🗣️</div></div> <div class="timeline-content-card"> <span class="time-duration-badge">14:10 - 14:20 (10분)</span> <h4 class="item-title-text">홍보 기업 소개</h4> <p class="item-details-text">홍보 테이블을 운영하는 참여 기업들의 간략한 소개와 부스 위치 안내가 이루어집니다.</p> </div> </div>
+            <div class="timeline-item" style="animation-delay: 0.2s;"> <div class="timeline-icon-wrapper"><div class="timeline-icon">🗣️</div></div> <div class="timeline-content-card"> <span class="time-duration-badge">14:10 - 14:20 (10분)</span> <h4 class="item-title-text">홍보 기업 소개</h4> <p class="item-details-text">홍보 테이블을 운영하는 참가가 기업들의 간략한 소개와 부스 위치 안내가 이루어집니다.</p> </div> </div>
             <div class="timeline-item" style="animation-delay: 0.3s;"> <div class="timeline-icon-wrapper"><div class="timeline-icon">🚀</div></div> <div class="timeline-content-card"> <span class="time-duration-badge">14:20 - 14:55 (35분)</span> <h4 class="item-title-text">IR 발표 (세션 1)</h4> <p class="item-details-text"> 사회서비스 기업들의 투자 유치 발표가 진행됩니다. (5개 기업, 기업당 7분 발표 및 Q&A)</p> </div> </div>
             <div class="timeline-item" style="animation-delay: 0.4s;"> <div class="timeline-icon-wrapper"><div class="timeline-icon">☕</div></div> <div class="timeline-content-card"> <span class="time-duration-badge">14:55 - 15:10 (15분)</span> <h4 class="item-title-text">네트워킹 브레이크 & 홍보 테이블 관람</h4> <p class="item-details-text">참석자 간 자유로운 네트워킹과 함께 홍보 기업들을 둘러볼 수 있는 시간입니다.</p> </div> </div>
             <div class="timeline-item" style="animation-delay: 0.5s;"> <div class="timeline-icon-wrapper"><div class="timeline-icon">🚀</div></div> <div class="timeline-content-card"> <span class="time-duration-badge">15:10 - 15:45 (35분)</span> <h4 class="item-title-text">IR 발표 (세션 2)</h4> <p class="item-details-text"> 사회서비스 기업들의 투자 유치 발표가 진행됩니다. (5개 기업, 기업당 7분 발표 및 Q&A)</p> </div> </div>
@@ -469,8 +469,8 @@ def display_annual_schedule_section():
     <section id="section-annual-schedule" class="section">
         <h2 class="section-title">2025년 투자 교류회 연간 일정</h2>
         <div class="event-schedule-grid">
-            <div class="event-schedule-card" style="animation-delay: 0s;"> <div class="card-header"> <span class="event-status" style="background-color:{PRIMARY_COLOR};">모집중</span> </div> <h3 class="event-theme">제1회: 국민의 삶의 질을 높이는 AI 사회서비스</h3> <span class="event-date-venue">2025. 6. 25.(수) / 서울</span> <p class="event-details">AI 기술을 활용하여 사회서비스의 효율성과 접근성을 혁신하는 기업을 위한 투자 교류의 장입니다. (참석 규모: 약 80명 내외)</p> <a href="#section-application-method" class="card-apply-button custom-button button-primary">세부 정보 확인 및 신청</a> </div>
-            <div class="event-schedule-card card-disabled-look" style="animation-delay: 0.15s;"> <div class="card-header"> <span class="event-status" style="background-color:{STATUS_COLOR_SCHEDULED};">모집예정</span> </div> <h3 class="event-theme">제2회: 돌봄의 공백을 채우는 지역 상생 사회서비스</h3> <p class="event-time"><span class="event-date-venue">2025. 8월 예정 / 대전 </span> </p> <p class="event-details">지역 사회의 특성을 반영한 맞춤형 돌봄 서비스 및 지역사회 활성화에 기여하는 기업을 발굴합니다.</p> <a href="#section-application-method" class="card-apply-button custom-button button-disabled">향후 모집 예정</a> </div>
+            <div class="event-schedule-card" style="animation-delay: 0s;"> <div class="card-header"> <span class="event-status" style="background-color:{PRIMARY_COLOR};">모집중</span> </div> <h3 class="event-theme">제1회: 국민의 삶의 질을 높이는 AI 사회서비스</h3> <span class="event-date-venue">2025. 6. 25.(수) / 서울</span> <p class="event-details">AI 기술을 활용하여 사회서비스의 효율성과<br> 접근성을 혁신하는 기업을 위한 투자 교류의 장입니다. (참석 규모: 약 80명 내외)</p> <a href="#section-application-method" class="card-apply-button custom-button button-primary">세부 정보 확인 및 신청</a> </div>
+            <div class="event-schedule-card card-disabled-look" style="animation-delay: 0.15s;"> <div class="card-header"> <span class="event-status" style="background-color:{STATUS_COLOR_SCHEDULED};">모집예정</span> </div> <h3 class="event-theme">제2회: 돌봄의 공백을 채우는 지역 상생 사회서비스</h3> <p class="event-time"><span class="event-date-venue">2025. 8월 예정 / 대전 </span> </p> <p class="event-details">지역 사회의 특성을 반영한 맞춤형 돌봄 서비스 및 지역사회 활성화에 기여하는 <br> 기업을 발굴합니다.</p> <a href="#section-application-method" class="card-apply-button custom-button button-disabled">향후 모집 예정</a> </div>
             <div class="event-schedule-card card-disabled-look" style="animation-delay: 0.3s;"> <div class="card-header"> <span class="event-status" style="background-color:{STATUS_COLOR_SCHEDULED};">모집예정</span> </div> <h3 class="event-theme">제3회: 국민의 삶을 HEAL하는 사회서비스</h3> <p class="event-time"><strong>2025. 9. 9.(화) / aT센터</strong></p> <p class="event-details">{event3_details}</p> <a href="#section-application-method" class="card-apply-button custom-button button-disabled">향후 모집 예정</a> </div>
         </div>
     </section>
@@ -514,7 +514,7 @@ def display_application_method_section():
                 <li>사업자등록증 사본</li>
                 <li>개인정보 수집·이용 동의서</li>
             </ul>
-            <p class="notice">* 참관 및 네트워킹 참여는 본 신청 페이지를 통하지 않으며, 별도 안내될 예정입니다.</p>
+            <p class="notice">* 참관 및 네트워킹 참가가는 본 신청 페이지를 통하지 않으며, 별도 안내될 예정입니다.</p>
         </div>
     </div>
     """
@@ -557,7 +557,7 @@ def display_application_method_section():
             </div>
             <div class="application-step">
                 <h3 class="application-step-title">Step 1: 참가 유형 확인 & 온라인 신청서 작성</h3>
-                <p> <strong>IR발표, 홍보테이블 운영, 투자자 밋업 </strong> 참여를 희망하시는 기업은 아래 '온라인 참가 신청하기' 버튼을 통해 신청 페이지로 이동 후, 기업 정보를 기재하고 제출합니다.</p>
+                <p> <strong>IR발표, 홍보테이블 운영, 투자자 밋업 </strong> 참가가를 희망하시는 기업은 아래 '온라인 참가 신청하기' 버튼을 통해 신청 페이지로 이동 후, 기업 정보를 기재하고 제출합니다.</p>
                 <p><a href="https://forms.gle/HLUu8cwfU4STHgF16" target="_blank" class="form-link">➡️ 온라인 참가 신청하기 (Google Form)</a></p>
             </div>
             <div class="application-step">
@@ -588,7 +588,7 @@ def display_application_method_section():
                     <li>기업 IR 자료 (VC 밋업용)</li>
                     <li>사업자등록증 사본</li>
                 </ul>
-                <p class="notice">* 참관 및 네트워킹 참여는 본 신청 페이지를 통하지 않으며, 별도 안내될 예정입니다.</p>
+                <p class="notice">* 참관 및 네트워킹 참가가는 본 신청 페이지를 통하지 않으며, 별도 안내될 예정입니다.</p>
             </div>
         </div>
             <div>      
