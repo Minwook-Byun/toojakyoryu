@@ -561,7 +561,7 @@ def display_application_method_section():
                 <p><a href="https://forms.gle/HLUu8cwfU4STHgF16" target="_blank" class="form-link">➡️ 온라인 참가 신청하기 (Google Form)</a></p>
             </div>
             <div class="application-step">
-                <h3 class="application-step-title">Step 2: 제출 서류 준비 및 업로드/이메일 제출</h3>
+                <h3 class="application-step-title">Step 2: 제출 서류 준비 및 업로드</h3>
                 <p>참가 유형에 맞는 신청서 및 필요 서류를 아래에서 다운로드 받아 작성 후, 온라인 신청서 내 안내에 따라 업로드 해주십시오.</p>
             </div>
              <div class="required-docs-section"> 
@@ -596,7 +596,7 @@ def display_application_method_section():
                 <p class="download-links-title">주요 신청 양식 다운로드</p>
                  <span class="download-links-span">참가 유형별 참가신청서 1부와 개인정보 이용동의서 1부를 구글폼에 제출 부탁드립니다</span>
                 <div class="download-links-grid">
-                    {f'<a href="https://drive.google.com/uc?export=download&id=105h0rjC5FIzQlY9xmavx0cWnrkS6xH15" target="_blank" class="download-link-button"><span class="icon">📄</span>신청서식<br>(공통)</a>' if NOTION_PAGE_URL else ""}
+                    {f'<a href="https://drive.google.com/uc?export=download&id=1sUNcIjQd6uCCc8qHdhqZjKGIvExhMsil" target="_blank" class="download-link-button"><span class="icon">📄</span>신청서식<br>(공통)</a>' if NOTION_PAGE_URL else ""}
                 </div>
             </div>
             <div class="application-notice">
