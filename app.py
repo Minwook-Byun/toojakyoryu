@@ -562,7 +562,7 @@ def display_application_method_section():
             </div>
             <div class="application-step">
                 <h3 class="application-step-title">Step 2: 제출 서류 준비 및 업로드</h3>
-                <p>'참가신청서 및 개인정보 동의서' 다운로드 및 작성 후 참가 유형별 제출 서류와 함께 온라인 신청서에 업로드.</p>
+                <p>'참가신청서 및 개인정보 동의서' 다운로드 및 작성 후 참가 유형별 제출 서류와 함께 온라인 신청서에 업로드</p>
             </div>
              <div class="download-area">
                 <p class="download-links-title">주요 신청 양식 다운로드</p>
