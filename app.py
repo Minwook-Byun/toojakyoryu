@@ -718,7 +718,7 @@ def display_faq_section():
                 <div class="faq-answer">
                     <p>소링아(소셜링크아카데미)는 중앙사회서비스원이 주관하고, 엠와이소셜컴퍼니(MYSC)가 함께하는 사회서비스 기업의 투자 유치 역량 강화를 위한 사회서비스 전문 액셀러레이팅 프로그램입니다.</p>
                     <p>기업가치 고도화 및 투자 유치 역량 강화를 필요로 하는 혁신기술 또는 사회서비스 제공 기업을 대상으로 기본교육 및 심화교육을 제공하고 있습니다.</p>
-                    <p>상세 내용은 아래 링크 참고 부탁드립니다. <a href="{NOTION_PAGE_URL if NOTION_PAGE_URL else '#'}" target="_blank">소링아에 대해서 자세히 보러 가기(클릭)</a></p>
+                    <p>상세 내용은 아래 링크 참고 부탁드립니다. <a href="https://sociallink3.streamlit.app/" target="_blank">소링아에 대해서 자세히 보러 가기(클릭)</a></p>
                 </div>
             </details>
         </div>
