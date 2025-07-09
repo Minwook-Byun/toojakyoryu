@@ -232,7 +232,7 @@ def inject_global_styles_and_header():
 def display_hero_section():
     first_event_date = "2025년 8월 4일(월) 13:30"
     first_event_theme = "돌봄의 공백을 채우는 지역 상생 사회서비스"
-    application_deadline = "2025년 7월 21일(월) 오후 5시까지(기한 엄수)"
+    application_deadline = "2025년 7월 21일(월) 오후 6시까지(기한 엄수)"
 
     hero_catchphrase_html = """
         <p style="font-size: 1.5rem; margin-bottom: 0.5em;">사회서비스 기업-투자자-유관기관 연결의 장!</p>
@@ -382,19 +382,16 @@ def display_participation_guide_section():
         .participation-layout-wrapper {{
             display: flex; flex-direction: column; align-items: center; gap: 0px; /* gap 제거 또는 조정 */
         }}
-        .guide-card-row {{ /* 이제 하나의 row가 3개의 카드를 담도록 수정 */
+        .guide-card-row {{ /* 이제 하나의 row가 카드를 담도록 수정 */
             display: grid;
             grid-template-columns: 1fr; /* 모바일 기본 1열 */
             gap: 30px;
             width: 100%;
-            max-width: 1100px; /* 3개 카드 배치 위해 너비 조정 */
+            max-width: 1100px; /* 카드 배치 위해 너비 조정 */
             margin-top: 50px; /* 위 subtitle과의 간격 */
         }}
-        @media (min-width: 768px) {{ /* 태블릿: 1열 또는 2열+1열 조정 가능, 여기선 1열 유지 후 데스크탑에서 3열 */
-            .guide-card-row {{ grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }}
-        }}
-        @media (min-width: 1024px) {{ /* 데스크탑: 3열 */
-            .guide-card-row {{ grid-template-columns: repeat(3, 1fr); }}
+        @media (min-width: 768px) {{ /* 태블릿 */
+            .guide-card-row {{ grid-template-columns: repeat(2, 1fr); }} /* 태블릿부터 2열로 표시 */
         }}
         /* .guide-card, .guide-card-title 등 기존 스타일은 유지 */
         .guide-card {{
@@ -419,21 +416,21 @@ def display_participation_guide_section():
             <div class="guide-card-row"> 
                 <div class="guide-card ir-presentation">
                     <h3 class="guide-card-title"><span class="title-icon">📢</span> IR 발표 기업</h3>
-                    <p class="guide-card-description">IR 발표를 통해 투자 유치 기회 확대를<br>필요로 하는 사회서비스 기업</p>
+                    <p class="guide-card-description">IR 발표를 통해 투자 유치 기회 확대를 필요로 하는 사회서비스 기업</p>
                 </div>
                 <div class="guide-card">
                     <h3 class="guide-card-title"><span class="title-icon">📰</span> 홍보테이블 운영 기업</h3>
-                    <p class="guide-card-description">홍보테이블을 통해 기업의 비즈니스 모델/임팩트 홍보 투자자·유관기관과의 <br> 네트워킹을 희망하는 사회서비스 기업</p>
-                </div>
-                <div class="guide-card">
-                    <h3 class="guide-card-title"><span class="title-icon">🤝</span> 투자자 밋업 기업</h3>
-                    <p class="guide-card-description">라운드 테이블 미팅(16:00~17:20)에 <br> 참가하여 투자자와의 1:1 투자 상담 및 <br> 밋업을 희망하는 사회서비스 기업</p>
-                </div>
-            </div>
-            {""} 
+                    <p class="guide-card-description">홍보테이블을 통해 기업의 비즈니스 모델/임팩트 홍보 투자자·유관기관과의 네트워킹을 희망하는 사회서비스 기업</p>
+        </div> 
     </section>
     """
     st.markdown(guide_html, unsafe_allow_html=True)
+
+#밋업 기업 주석 처리 
+       # <div class="guide-card">
+         # <h3 class="guide-card-title"><span class="title-icon">🤝</span> 투자자 밋업 기업</h3>
+         # <p class="guide-card-description">라운드 테이블 미팅(16:00~17:20)에 <br> 참가하여 투자자와의 1:1 투자 상담 및 <br> 밋업을 희망하는 사회서비스 기업</p>
+     #   </div>
 
 # --- 4. 세부 행사 일정 (예시) ---
 def display_event_composition_section():
@@ -608,7 +605,7 @@ def display_application_method_section():
         <h2 class="section-title">참가 신청 방법</h2>
         <div class="application-content">
             <div class="application-deadline-highlight">
-                2회차 참가 신청 마감: 7월 21일(월) 오후 5시까지(시간 엄수)
+                2회차 참가 신청 마감: 7월 21일(월) 오후 6시까지(시간 엄수)
             </div>
             <div class="application-step">
                 <h3 class="application-step-title">Step 1: 참가 유형 확인 & 온라인 신청서 작성</h3>
