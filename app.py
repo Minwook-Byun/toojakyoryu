@@ -481,7 +481,12 @@ def display_annual_schedule_section():
 
 def display_application_method_section():
     application_note = "※ 교류회 주제 및 장소 여건에 따라 선착순 마감될 수 있으며, 선정 기업(기관) 별도 통보 예정"
-    application_html = f"""
+    
+    # 정확한 파일명을 변수로 저장
+    hwp_file_path = "(양식)2025년 제2회 사회서비스 투자 교류회 참가 신청서 및 개인정보 동의서.hwp"
+    
+    # 다운로드 버튼을 제외한 상단 HTML 부분
+    application_html_top = f"""
     <style>
         #section-application-method {{ background-color: {BACKGROUND_COLOR_LIGHT_GRAY}; text-align: center; padding-bottom: 100px; }}
         .application-content {{ max-width: 850px; margin: 0 auto; }}
@@ -498,20 +503,26 @@ def display_application_method_section():
             margin-top: 0px; margin-bottom: 45px;
             box-shadow: var(--box-shadow-dark);
         }}
-        .download-area {{ margin-top: 35px; }}
+        .download-area {{ margin-top: 35px; text-align: center;}}
         .download-links-title {{ font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom:0px; text-align:center; }}
-        .download-links-span {{ font-size: 0.8rem; font-weight: 400; color: var(--text-primary); margin-bottom:100px; text-align:center; }}
-        .download-links-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 30px; justify-content: center; max-width: 200px; margin-bottom:100px; margin: 0 auto; }}
-        .download-link-button {{ display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: transparent; color: {PRIMARY_COLOR_DARK} !important; padding: 28px 20px; border-radius: var(--border-radius-md); text-decoration: none; font-size: 1.05rem; font-weight: 600; border: 2px solid {PRIMARY_COLOR_DARK}; box-shadow: none; transition: all 0.3s ease; text-align: center; min-height: 100px; }}
-        .download-link-button:hover {{ background-color: {PRIMARY_COLOR_DARK}; color: var(--white-color) !important; border-color: {PRIMARY_COLOR_DARK}; transform: translateY(-6px) scale(1.03); box-shadow: var(--box-shadow-medium); }}
-        .download-link-button .icon {{ font-size: 2.2em; margin-bottom: 15px; }}
+        .download-links-span {{ font-size: 0.8rem; font-weight: 400; color: var(--text-primary); margin-bottom: 20px; text-align:center; display:block; }}
+        .stDownloadButton {{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 100px;
+        }}
+        .stDownloadButton button {{
+            background-color: transparent; color: {PRIMARY_COLOR_DARK} !important; padding: 28px 20px; border-radius: 10px; text-decoration: none; font-size: 1.05rem; font-weight: 600; border: 2px solid {PRIMARY_COLOR_DARK}; box-shadow: none; transition: all 0.3s ease; text-align: center; min-height: 100px; width: 200px;
+        }}
+        .stDownloadButton button:hover {{
+            background-color: {PRIMARY_COLOR_DARK}; color: var(--white-color) !important; border-color: {PRIMARY_COLOR_DARK}; transform: translateY(-6px) scale(1.03); box-shadow: var(--box-shadow-medium);
+        }}
         .application-notice {{ margin-top: 65px; padding: 30px; background-color: var(--white-color); border: 1px solid var(--border-color); border-left: 5px solid {TEXT_COLOR_MUTED}; border-radius: var(--border-radius-md); font-size: 1rem; color: var(--text-muted); line-height: 1.8; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto; box-shadow: var(--box-shadow-light); }}
         .application-notice strong {{ color: {PRIMARY_COLOR_DARK}; }}
         .application-notice p:last-child {{ margin-bottom: 0; }}
-        @media (max-width: 600px) {{ .download-links-grid {{ grid-template-columns: 1fr; }} .application-step-title {{ font-size: 1.4rem; }} .application-step p {{ font-size: 1.05rem; }} .application-deadline-highlight {{ font-size: 1.2rem; padding: 18px 25px; }} .application-notice {{ text-align: left; }} }}
+        @media (max-width: 600px) {{ .application-step-title {{ font-size: 1.4rem; }} .application-step p {{ font-size: 1.05rem; }} .application-deadline-highlight {{ font-size: 1.2rem; padding: 18px 25px; }} .application-notice {{ text-align: left; }} }}
     </style>
      <section id="section-application-method" class="section">
-         <h2 class="section-title">참가 신청 방법</h2>
          <div class="application-content">
              <div class="application-deadline-highlight">
                  2회차 참가 신청 마감: 7월 21일(월) 오후 6시까지(시간 엄수)
@@ -528,39 +539,53 @@ def display_application_method_section():
               <div class="download-area">
                   <p class="download-links-title">주요 신청 양식 다운로드</p>
                    <span class="download-links-span">참가 유형별 참가신청서 1부와 개인정보 이용동의서 1부를 구글폼에 제출 부탁드립니다</span>
-                  <div class="download-links-grid">
-                       <a href="{APPLICATION_FORM_DOWNLOAD_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>신청서식<br>(공통)</a>
-                  </div>
               </div>
+    """
+    st.markdown(application_html_top, unsafe_allow_html=True)
+    
+    # Streamlit의 네이티브 다운로드 버튼 사용 (정확한 파일명 반영)
+    try:
+        with open(hwp_file_path, "rb") as file:
+            st.download_button(
+                label="📄\n신청서식\n(공통)",
+                data=file,
+                file_name=hwp_file_path,  # 다운로드 시 표시될 파일명
+                mime="application/x-hwp"
+            )
+    except FileNotFoundError:
+        st.error(f"'{hwp_file_path}' 파일을 찾을 수 없습니다. 파이썬 파일과 같은 위치에 파일이 있는지, 파일명이 정확한지 다시 확인해주세요.")
+
+    # 다운로드 버튼을 제외한 하단 HTML 부분
+    application_html_bottom = f"""
                <div class="required-docs-section">
-             <h4>Step 2: 참가 유형별 제출 서류 안내</h4>
-             <div>
-                 <h5>📢 IR 발표 기업</h5>
-                 <ul>
-                     <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
-                     <li>기업 IR 자료 (발표 7분, <strong>16:9 PDF 비율로 제출, 제출 후 수정 불가</strong>)</li>
-                     <li>사업자등록증 사본</li>
-                 </ul>
-                 <hr>
-                 <h5>📰 홍보테이블 운영 기업</h5>
-                 <ul>
-                     <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
-                     <li>기업 IR 자료 (라운드 테이블 시 VC 밋업용, 별도 비율 제한 없음)</li>
-                     <li>홍보물 제작에 필요한 기본 정보</li>
-                     <li>사업자등록증 사본</li>
-                 </ul>
-              <p class="notice">* 참관 및 네트워킹 참가가는 본 신청 페이지를 통하지 않으며, 별도 안내될 예정입니다.</p>
+                 <h4>Step 2: 참가 유형별 제출 서류 안내</h4>
+                 <div>
+                     <h5>📢 IR 발표 기업</h5>
+                     <ul>
+                         <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
+                         <li>기업 IR 자료 (발표 7분, <strong>16:9 PDF 비율로 제출, 제출 후 수정 불가</strong>)</li>
+                         <li>사업자등록증 사본</li>
+                     </ul>
+                     <hr>
+                     <h5>📰 홍보테이블 운영 기업</h5>
+                     <ul>
+                         <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
+                         <li>기업 IR 자료 (라운드 테이블 시 VC 밋업용, 별도 비율 제한 없음)</li>
+                         <li>홍보물 제작에 필요한 기본 정보</li>
+                         <li>사업자등록증 사본</li>
+                     </ul>
+                  <p class="notice">* 참관 및 네트워킹 참가가는 본 신청 페이지를 통하지 않으며, 별도 안내될 예정입니다.</p>
+                 </div>
              </div>
-         </div>
              <div>
-             <div class="application-notice">
-                 <p><strong>[유의사항]</strong><br>{application_note}</p>
+                 <div class="application-notice">
+                     <p><strong>[유의사항]</strong><br>{application_note}</p>
+                 </div>
              </div>
          </div>
      </section>
     """
-    st.markdown(application_html, unsafe_allow_html=True)
-
+    st.markdown(application_html_bottom, unsafe_allow_html=True)
 def display_faq_section():
     faq_html = f"""
     <style>
