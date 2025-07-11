@@ -26,7 +26,7 @@ BOX_SHADOW_DARK = "0 8px 16px rgba(0,0,0,0.15)"
 HEADER_HEIGHT_PX = 70
 
 GOOGLE_FORM_URL = "https://forms.gle/7tPQ2fEykJKYBtzi7"
-APPLICATION_FORM_VIEW_URL = "https://docs.google.com/document/d/1v2skE3Lrkk9FHeAZyFgBWPufGhduFQ9Q/edit?usp=sharing"
+APPLICATION_FORM_DOWNLOAD_URL = "https://docs.google.com/document/d/1v2skE3Lrkk9FHeAZyFgBWPufGhduFQ9Q/export?format=docx"
 
 def image_to_data_uri(file_path_str):
     file_path = Path(file_path_str)
@@ -529,7 +529,7 @@ def display_application_method_section():
                   <p class="download-links-title">주요 신청 양식 다운로드</p>
                    <span class="download-links-span">참가 유형별 참가신청서 1부와 개인정보 이용동의서 1부를 구글폼에 제출 부탁드립니다</span>
                   <div class="download-links-grid">
-                       <a href="{APPLICATION_FORM_VIEW_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>신청서식<br>(공통)</a>
+                       <a href="{APPLICATION_FORM_DOWNLOAD_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>신청서식<br>(공통)</a>
                   </div>
               </div>
                <div class="required-docs-section">
@@ -545,7 +545,7 @@ def display_application_method_section():
                  <h5>📰 홍보테이블 운영 기업</h5>
                  <ul>
                      <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
-                     <li>기업 IR 자료 (VC 밋업용, <strong>16:9 PDF 비율로 제출, 제출 후 수정 불가</strong>)</li>
+                     <li>기업 IR 자료 (라운드 테이블 시 VC 밋업용, 별도 비율 제한 없음)</li>
                      <li>홍보물 제작에 필요한 기본 정보</li>
                      <li>사업자등록증 사본</li>
                  </ul>
