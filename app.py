@@ -314,6 +314,7 @@ def display_hero_section():
             <p><span class="info-label">일시:</span> {first_event_date}</p>
             <p><span class="info-label">주제:</span> {first_event_theme}</p>
             <p><span class="info-label">신청마감:</span> <span class="deadline">{application_deadline}</span></p>
+            <p><span class="info-label"></span>장소: 대전테크노파크 디스테이션 10층 <span class="deadline"></span></p>
         </div>
         <div class="hero-cta-button-container">
             <a href="https://forms.gle/HLUu8cwfU4STHgF16" class="hero-cta-button custom-button">
@@ -422,11 +423,7 @@ def display_participation_guide_section():
                     <h3 class="guide-card-title"><span class="title-icon">📰</span> 홍보테이블 운영 기업</h3>
                     <p class="guide-card-description">홍보테이블을 통해 기업의 비즈니스 모델/임팩트 홍보 투자자·유관기관과의 네트워킹을 희망하는 사회서비스 기업</p>
               </div> 
-              #밋업 기업 주석 처리 
-       <div class="guide-card">
-         <h3 class="guide-card-title"><span class="title-icon">🤝</span> 참관 기업</h3>
-         <p class="guide-card-description">행사 참관을 희망하는 경우 별도 신청이 필요하며, 중앙사회서비스원 홈페이지 공지사항을 통해 신청 방법 확인</p>
-      </div>
+  *행사 참관을 희망하는 경우 별도 신청이 필요하며, 중앙사회서비스원 홈페이지 공지사항을 통해 신청 방법 확인
     </section>
     """
     st.markdown(guide_html, unsafe_allow_html=True)
