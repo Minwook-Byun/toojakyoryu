@@ -571,7 +571,7 @@ def display_application_method_section():
                      <h5>📢 IR 발표 기업</h5>
                      <ul>
                          <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
-                         <li>기업 IR 자료 (발표 7분, <strong>16:9 비율로 PDF 형식으로 제출)</strong>)</li>
+                         <li>기업 IR 자료 (발표 7분, <strong>16:9 비율로 PDF 형식으로 제출)</strong></li>
                          <li>사업자등록증 사본</li>
                      </ul>
                      <hr>
