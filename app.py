@@ -30,8 +30,8 @@ HEADER_HEIGHT_PX = 70
 # --- 수정된 링크 ---
 # 실제 구글폼 링크
 GOOGLE_FORM_URL = "https://forms.gle/7tPQ2fEykJKYBtzi7"
-# 실제 신청서식 다운로드 링크 (Google Docs 직접 다운로드)
-APPLICATION_FORM_DOWNLOAD_URL = "https://docs.google.com/document/d/1v2skE3Lrkk9FHeAZyFgBWPufGhduFQ9Q/export?format=docx"
+# [수정됨] 실제 신청서식 보기 링크 (가장 안정적인 방식)
+APPLICATION_FORM_VIEW_URL = "https://docs.google.com/document/d/1v2skE3Lrkk9FHeAZyFgBWPufGhduFQ9Q/edit?usp=sharing"
 
 
 # --- 이미지 Base64 인코딩 함수 ---
@@ -108,16 +108,11 @@ def inject_global_styles_and_header():
         .header-logo-group {{ display: flex; align-items: center; gap: 18px; }}
         .header-logo {{ height: 34px; object-fit: contain; }}
         .header-logo-placeholder {{ font-size: 1.05rem; font-weight: 600; color: var(--text-muted); }}
-
-        /* === 내비게이션 스타일 수정 시작 === */
-        /* 내비게이션 링크들을 담는 컨테이너 */
         .header-nav {{
             display: flex;
             align-items: center;
-            gap: 8px; /* 각 링크 사이의 간격을 일정하게 조정 (margin 대신 사용) */
+            gap: 8px;
         }}
-
-        /* 개별 내비게이션 링크 아이템 */
         .header-nav-item {{
             position: relative;
             text-decoration: none;
@@ -128,35 +123,27 @@ def inject_global_styles_and_header():
             border-radius: var(--border-radius-md);
             transition: color 0.25s ease, background-color 0.25s ease;
         }}
-
-        /* 마우스를 올리거나 포커스(키보드 탭 등) 됐을 때의 스타일 */
         .header-nav-item:hover, .header-nav-item:focus {{
             color: var(--primary-color-dark);
-            background-color: rgba(139, 195, 74, 0.1); /* 매우 투명한 강조 배경색 */
+            background-color: rgba(139, 195, 74, 0.1);
             outline: none;
         }}
-
-        /* 링크 하단에 나타나는 애니메이션 바(bar) */
         .header-nav-item::after {{
             content: '';
             position: absolute;
-            bottom: 0;          /* 링크 아이템의 가장 아래쪽에 위치 */
+            bottom: 0;
             left: 0;
             right: 0;
-            margin: auto;       /* left, right, margin:auto 조합으로 수평 중앙 정렬 */
-            width: 0;           /* 기본 너비는 0 (숨겨진 상태) */
-            height: 3px;        /* 바의 두께 */
+            margin: auto;
+            width: 0;
+            height: 3px;
             background: var(--primary-color);
-            border-radius: 3px 3px 0 0; /* 위쪽 모서리만 둥글게 */
-            transition: width 0.3s ease-in-out; /* 너비가 변할 때 부드러운 애니메이션 */
+            border-radius: 3px 3px 0 0;
+            transition: width 0.3s ease-in-out;
         }}
-
-        /* 링크에 마우스를 올렸을 때 ::after 요소의 너비를 변경 */
         .header-nav-item:hover::after {{
-            width: 80%; /* 링크 너비의 80%만큼 바가 나타남 */
+            width: 80%;
         }}
-        /* === 내비게이션 스타일 수정 끝 === */
-
         .fab {{
             position: fixed; bottom: 35px; right: 35px;
             background: linear-gradient(145deg, var(--primary-color), var(--primary-color-dark));
@@ -181,18 +168,16 @@ def inject_global_styles_and_header():
         .button-primary:hover {{ background-color: var(--primary-color-dark); color: var(--white-color) !important; transform: translateY(-3px); box-shadow: var(--box-shadow-medium); }}
         .button-outline {{ background-color: transparent; color: var(--primary-color-dark) !important; border-color: var(--primary-color-dark); }}
         .button-outline:hover {{ background-color: var(--primary-color-dark); color: var(--white-color) !important; transform: translateY(-3px); box-shadow: var(--box-shadow-medium); }}
-
-        /* --- 참가 신청 방법 - 제출 서류 안내 스타일 --- */
         .required-docs-section {{
             background-color: var(--white-color); padding: 30px; border-radius: var(--border-radius-md);
             margin-bottom: 30px; box-shadow: var(--box-shadow-light); text-align: left;
             border-left: 5px solid {PRIMARY_COLOR_LIGHT};
         }}
-        .required-docs-section h4 {{ /* Step 2 제목 */
+        .required-docs-section h4 {{
             font-size: 1.6rem; font-weight: 700; color: {PRIMARY_COLOR_DARK};
             margin-bottom: 25px; text-align: center;
         }}
-        .required-docs-section h5 {{ /* 각 참가 유형 제목 */
+        .required-docs-section h5 {{
             font-size: 1.2rem; font-weight: 600; color: var(--text-primary);
             margin-top: 20px; margin-bottom: 10px;
         }}
@@ -204,18 +189,15 @@ def inject_global_styles_and_header():
         .required-docs-section hr {{
             margin: 25px 0; border: 0; border-top: 1px solid var(--border-color);
         }}
-        .required-docs-section p.notice {{ /* 하단 안내 문구 */
+        .required-docs-section p.notice {{
             font-size: 0.95rem; color: var(--text-muted); margin-top: 15px; line-height: 1.6;
         }}
-
-
         @media (max-width: 992px) {{
             .header-nav {{ display: none; }}
             .header-content {{ justify-content: center; }}
-            /* 참가 안내 카드 3개를 태블릿에서는 1줄 또는 2줄+1줄로 조정 필요시 */
             #section-participation-guide .guide-card-row {{ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }}
         }}
-        @media (max-width: 767px) {{ /* 모바일 */
+        @media (max-width: 767px) {{
              #section-participation-guide .guide-card-row {{ grid-template-columns: 1fr; }}
         }}
         @media (max-width: 576px) {{
@@ -243,7 +225,6 @@ def display_hero_section():
     """
     hero_cta_button_text = "🚀 참가 신청 바로가기"
 
-    # (히어로 섹션 HTML 및 내부 CSS는 이전 답변과 동일하게 유지 - 구조 변경 없음)
     hero_html = f"""
     <style>
         #section-hero {{
@@ -317,7 +298,7 @@ def display_hero_section():
             <p><span class="info-label">일시:</span> {first_event_date}</p>
             <p><span class="info-label">주제:</span> {first_event_theme}</p>
             <p><span class="info-label">신청마감:</span> <span class="deadline">{application_deadline}</span></p>
-            <p><span class="info-label"></span>장소: 대전테크노파크 디스테이션 10층 <span class="deadline"></span></p>
+            <p><span class="info-label">장소:</span> 대전테크노파크 디스테이션 10층</p>
         </div>
         <div class="hero-cta-button-container">
             <a href="{GOOGLE_FORM_URL}" target="_blank" class="hero-cta-button custom-button">
@@ -336,24 +317,9 @@ def display_introduction_section():
         #section-introduction {{ background-color: var(--white-color); }}
         .intro-grid-container {{ display: grid; grid-template-columns: 1fr; gap: 60px; align-items: center; }}
         .intro-text-content {{ text-align: center; }}
-        /* 옮겨진 문단 스타일 */
-        .intro-text-content .moved-paragraph {{
-            font-style: italic;
-            color: var(--text-muted);
-            background-color: #f0f0f0; /* 이전 코드의 #f0f0f0 유지 또는 var(--background-light-gray) 사용 가능 */
-            padding: 15px;
-            border-radius: var(--border-radius-sm); /* 8px 대신 글로벌 변수 사용 */
-            text-align: center;
-            max-width: 700px;
-            margin: 30px auto; /* 위아래 간격 및 중앙 정렬 */
-        }}
         .intro-text-content h3 {{ font-size: 2.2rem; font-weight: 700; color: var(--primary-color-dark); margin-bottom: 30px; line-height: 1.4; letter-spacing: -0.3px; }}
         .intro-text-content p {{ font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 22px; line-height: 1.85; max-width: 700px; margin-left: auto; margin-right: auto; }}
-        .intro-image-placeholder {{ background-color: var(--background-light-gray); border-radius: var(--border-radius-lg); min-height: 400px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--text-muted); box-shadow: var(--box-shadow-light); overflow: hidden; border: 1px solid var(--border-color); transition: transform 0.4s ease, box-shadow 0.4s ease; }}
-        .intro-image-placeholder:hover {{ transform: scale(1.03); box-shadow: var(--box-shadow-medium); }}
-        .intro-image-placeholder img {{ width: 100%; height: 100%; object-fit: cover; }}
         .organizers-section {{ margin-top: 80px; text-align: center; padding-top: 60px; border-top: 1px solid var(--border-color); }}
-        .organizers-section h4 {{ font-size: 1.8rem; color: var(--text-primary); margin-bottom: 40px; font-weight: 600; }}
         .organizer-logos-flex {{ display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; }}
         .organizer-logo-item {{ width: 180px; height: 60px; display: flex; justify-content: center; align-items: center; }}
         .organizer-logo-item img {{ max-width: 100%; max-height: 100%; object-fit: contain; opacity: 0.8; transition: opacity 0.3s ease, transform 0.3s ease; }}
@@ -377,42 +343,44 @@ def display_introduction_section():
     </section>
     """
     st.markdown(intro_html, unsafe_allow_html=True)
+
 # --- 3. 참가 안내 (신청 대상) ---
 def display_participation_guide_section():
-    # 사용자 요청: 3개 카드 병렬 배치, 중앙 모티프 삭제
     guide_html = f"""
     <style>
         #section-participation-guide {{ background-color: var(--background-light-gray); }}
         .participation-layout-wrapper {{
-            display: flex; flex-direction: column; align-items: center; gap: 0px; /* gap 제거 또는 조정 */
+            display: flex; flex-direction: column; align-items: center; gap: 0px;
         }}
-        .guide-card-row {{ /* 이제 하나의 row가 카드를 담도록 수정 */
+        .guide-card-row {{
             display: grid;
-            grid-template-columns: 1fr; /* 모바일 기본 1열 */
+            grid-template-columns: 1fr;
             gap: 30px;
             width: 100%;
-            max-width: 1100px; /* 카드 배치 위해 너비 조정 */
-            margin-top: 50px; /* 위 subtitle과의 간격 */
+            max-width: 1100px;
+            margin-top: 50px;
         }}
-        @media (min-width: 768px) {{ /* 태블릿 */
-            .guide-card-row {{ grid-template-columns: repeat(2, 1fr); }} /* 태블릿부터 2열로 표시 */
+        @media (min-width: 768px) {{
+            .guide-card-row {{ grid-template-columns: repeat(2, 1fr); }}
         }}
-        /* .guide-card, .guide-card-title 등 기존 스타일은 유지 */
         .guide-card {{
             background-color: var(--white-color); border-radius: var(--border-radius-lg); padding: 35px;
             box-shadow: var(--box-shadow-light); border: 1px solid var(--border-color);
             border-bottom: 5px solid var(--primary-color-light);
             transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-            display: flex; flex-direction: column; min-height: 250px; /* 카드 높이 일관성 */
+            display: flex; flex-direction: column; min-height: 250px;
         }}
         .guide-card:hover {{ transform: translateY(-10px) scale(1.02); box-shadow: var(--box-shadow-dark); border-bottom-color: var(--primary-color-dark); }}
         .guide-card-title {{ font-size: 1.7rem; font-weight: 700; color: var(--primary-color-dark); margin-bottom: 18px; display: flex; align-items: center; }}
         .guide-card-title .title-icon {{ font-size: 2rem; margin-right: 15px; color: var(--primary-color); }}
         .guide-card-description {{ font-size: 1rem; color: var(--text-secondary); margin-bottom: 28px; line-height: 1.75; flex-grow: 1; }}
-        .guide-card ul {{ list-style-type: none; padding-left: 0; margin: 0; margin-top: auto; }}
-        .guide-card li {{ font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 12px; padding-left: 28px; position: relative; line-height: 1.65; }}
-        .guide-card li strong {{ font-weight: 700; color: var(--text-primary);}} /* 강조 스타일 */
-        .guide-card li::before {{ content: '✔'; color: var(--primary-color); position: absolute; left: 0; font-weight: bold; font-size: 1.2em; }}
+        /* [수정됨] 안내 문구 스타일 추가 */
+        .participation-notice {{
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }}
     </style>
     <section id="section-participation-guide" class="section">
         <h2 class="section-title">참가 유형</h2>
@@ -426,20 +394,16 @@ def display_participation_guide_section():
                     <h3 class="guide-card-title"><span class="title-icon">📰</span> 홍보테이블 운영 기업</h3>
                     <p class="guide-card-description">홍보테이블을 통해 기업의 비즈니스 모델/임팩트 홍보 투자자·유관기관과의 네트워킹을 희망하는 사회서비스 기업</p>
                 </div>
- *행사 참관을 희망하는 경우 별도 신청이 필요하며, 중앙사회서비스원 홈페이지 공지사항을 통해 신청 방법 확인
+            </div>
+            {/* [수정됨] 안내 문구 위치 및 태그 수정 */}
+            <p class="participation-notice">*행사 참관을 희망하는 경우 별도 신청이 필요하며, 중앙사회서비스원 홈페이지 공지사항을 통해 신청 방법 확인</p>
+        </div>
     </section>
     """
     st.markdown(guide_html, unsafe_allow_html=True)
 
-#밋업 기업 주석 처리
-    # <div class="guide-card">
-        # <h3 class="guide-card-title"><span class="title-icon">🤝</span> 투자자 밋업 기업</h3>
-        # <p class="guide-card-description">라운드 테이블 미팅(16:00~17:20)에 <br> 참가하여 투자자와의 1:1 투자 상담 및 <br> 밋업을 희망하는 사회서비스 기업</p>
-    #  </div>
-
 # --- 4. 세부 행사 일정 (예시) ---
 def display_event_composition_section():
-    # (세부 행사 일정 HTML 및 내부 CSS는 이전 답변과 동일하게 유지 - 구조 변경 없음, 내부 텍스트만 PPT에 맞게 수정됨)
     composition_html = f"""
     <style>
         #section-event-composition {{ background-color: {BACKGROUND_COLOR_LIGHT_GRAY}; font-family: 'Pretendard', sans-serif; }}
@@ -479,7 +443,6 @@ def display_event_composition_section():
 def display_annual_schedule_section():
     STATUS_COLOR_SCHEDULED = TEXT_COLOR_MUTED
     event3_details = "복지, 보건·의료, 교육, 고용, 주거, 문화, 환경의 분야에서 국민의 삶을 HEAL하는 사회서비스 기업을 지원합니다."
-    # (연간 일정 HTML 및 내부 CSS는 이전 답변과 동일하게 유지 - 구조 변경 없음, 내부 텍스트만 PPT에 맞게 수정됨)
     annual_schedule_html = f"""
     <style>
         #section-annual-schedule {{ background-color: var(--white-color); }}
@@ -493,10 +456,10 @@ def display_annual_schedule_section():
         .event-schedule-card .card-header {{ display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }}
         .event-date-venue {{ font-size: 1rem; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; text-align: center ; }}
         .event-status {{ font-size: 0.88rem; font-weight: 700; color: var(--white-color); padding: 7px 16px; border-radius: 20px; }}
-        .event-theme {{ font-size: 1.5rem; font-weight: 700; color: var(--primary-color-dark); margin-bottom: 18px; line-height: 1.4; font-style: normal !important; text-align: center; min-height: calc(1.4em * 2 * 1.4); }} /* 테마 2줄 확보 */
+        .event-theme {{ font-size: 1.5rem; font-weight: 700; color: var(--primary-color-dark); margin-bottom: 18px; line-height: 1.4; font-style: normal !important; text-align: center; min-height: calc(1.4em * 2 * 1.4); }}
         .event-time {{ font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }}
         .event-time .icon-time-emoji {{ margin-right: 8px; color: {PRIMARY_COLOR_DARK}; font-size: 1.1em; }}
-        .event-details {{ font-size: 0.9rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 25px; flex-grow: 1; text-align: center; min-height: calc(1.65em * 3); }} /* 설명 3줄 확보 */
+        .event-details {{ font-size: 0.9rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 25px; flex-grow: 1; text-align: center; min-height: calc(1.65em * 3); }}
         .card-apply-button {{ margin-top: auto; text-align: center; width: 100%; padding-top: 14px; padding-bottom: 14px; font-size: 1rem; }}
         .custom-button.button-disabled {{ background-color: #d8d8d8 !important; color: #888888 !important; border-color: #d8d8d8 !important; box-shadow: none !important; pointer-events: none; cursor: not-allowed; }}
         .custom-button.button-disabled:hover {{ background-color: #d8d8d8 !important; transform: none !important; box-shadow: none !important; }}
@@ -536,8 +499,6 @@ def display_annual_schedule_section():
 # --- 6. 참가 신청 방법 ---
 def display_application_method_section():
     application_note = "※ 교류회 주제 및 장소 여건에 따라 선착순 마감될 수 있으며, 선정 기업(기관) 별도 통보 예정"
-
-    # (참가 신청 방법 HTML 및 내부 CSS는 이전 답변과 유사하게 유지, required_docs_html 삽입 위치 및 스타일 조정)
     application_html = f"""
     <style>
         #section-application-method {{ background-color: {BACKGROUND_COLOR_LIGHT_GRAY}; text-align: center; padding-bottom: 100px; }}
@@ -555,7 +516,7 @@ def display_application_method_section():
             margin-top: 0px; margin-bottom: 45px;
             box-shadow: var(--box-shadow-dark);
         }}
-        .download-area {{ margin-top: 35px; }} /* 제출서류 안내 섹션과의 간격 조정 */
+        .download-area {{ margin-top: 35px; }}
         .download-links-title {{ font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin-bottom:0px; text-align:center; }}
         .download-links-span {{ font-size: 0.8rem; font-weight: 400; color: var(--text-primary); margin-bottom:100px; text-align:center; }}
         .download-links-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 30px; justify-content: center; max-width: 200px; margin-bottom:100px; margin: 0 auto; }}
@@ -586,7 +547,7 @@ def display_application_method_section():
                   <p class="download-links-title">주요 신청 양식 다운로드</p>
                    <span class="download-links-span">참가 유형별 참가신청서 1부와 개인정보 이용동의서 1부를 구글폼에 제출 부탁드립니다</span>
                   <div class="download-links-grid">
-                       <a href="{APPLICATION_FORM_DOWNLOAD_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>신청서식<br>(공통)</a>
+                       <a href="{APPLICATION_FORM_VIEW_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>신청서식<br>(공통)</a>
                   </div>
               </div>
                <div class="required-docs-section">
@@ -595,14 +556,14 @@ def display_application_method_section():
                  <h5>📢 IR 발표 기업</h5>
                  <ul>
                      <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
-                     <li>기업 IR 자료 (발표 7분, **16:9 PDF 비율로 제출, 제출 후 수정 불가**)</li>
+                     <li>기업 IR 자료 (발표 7분, <strong>16:9 PDF 비율로 제출, 제출 후 수정 불가</strong>)</li>
                      <li>사업자등록증 사본</li>
                  </ul>
                  <hr>
                  <h5>📰 홍보테이블 운영 기업</h5>
                  <ul>
                      <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
-                     <li>기업 IR 자료 (VC 밋업용, **16:9 PDF 비율로 제출, 제출 후 수정 불가**)</li>
+                     <li>기업 IR 자료 (VC 밋업용, <strong>16:9 PDF 비율로 제출, 제출 후 수정 불가</strong>)</li>
                      <li>홍보물 제작에 필요한 기본 정보</li>
                      <li>사업자등록증 사본</li>
                  </ul>
@@ -624,45 +585,37 @@ def display_faq_section():
     <style>
         #section-faq {{ background-color: var(--white-color); }}
         .faq-intro {{
-            max-width: 850px; /* 너비 증가 */
-            margin: 0 auto 60px auto; /* 하단 마진 증가 */
-            padding: 30px; /* 패딩 증가 */
+            max-width: 850px; margin: 0 auto 60px auto; padding: 30px;
             background-color: {BACKGROUND_COLOR_LIGHT_GRAY};
             border-radius: var(--border-radius-md);
-            text-align: center;
-            font-size: 1.05rem; /* 크기 증가 */
-            color: var(--text-secondary);
-            border-left: 6px solid {PRIMARY_COLOR}; /* 강조선 두껍게 */
+            text-align: center; font-size: 1.05rem; color: var(--text-secondary);
+            border-left: 6px solid {PRIMARY_COLOR};
             box-shadow: var(--box-shadow-light);
         }}
         .faq-intro p {{ margin-bottom: 12px; line-height: 1.75; }}
         .faq-intro p:last-child {{ margin-bottom: 0; }}
-
-        .faq-list-container {{ max-width: 900px; margin: 0 auto; }} /* 너비 증가 */
+        .faq-list-container {{ max-width: 900px; margin: 0 auto; }}
         .faq-item {{
             background-color: var(--white-color);
             border: 1px solid var(--border-color);
             border-radius: var(--border-radius-md);
-            margin-bottom: 20px; /* 간격 증가 */
+            margin-bottom: 20px;
             transition: box-shadow 0.3s ease, border-color 0.3s ease;
             box-shadow: var(--box-shadow-light);
-            overflow: hidden; /* 내부 요소 border-radius 적용 위해 */
+            overflow: hidden;
         }}
         .faq-item:last-child {{ margin-bottom: 0; }}
         .faq-item[open] {{
             box-shadow: var(--box-shadow-medium);
-            border-color: {PRIMARY_COLOR_DARK}; /* 열렸을 때 테두리 색상 변경 */
+            border-color: {PRIMARY_COLOR_DARK};
         }}
         .faq-item[open] .faq-question {{
-            font-weight: 700; /* Pretendard Bold */
+            font-weight: 700;
             color: {PRIMARY_COLOR_DARK};
-            background-color: {PRIMARY_COLOR_LIGHT}44; /* 배경 투명도 조정 */
-            /* border-bottom: 1px solid {PRIMARY_COLOR_LIGHT}; /* 답변과 구분선은 답변 영역의 border-top으로 통일 */
+            background-color: {PRIMARY_COLOR_LIGHT}44;
         }}
         .faq-question {{
-            padding: 22px 30px; /* 패딩 증가 */
-            font-size: 1.2rem; /* 크기 증가 */
-            font-weight: 600; /* Pretendard SemiBold */
+            padding: 22px 30px; font-size: 1.2rem; font-weight: 600;
             color: var(--text-primary);
             cursor: pointer; outline: none; display: block;
             transition: background-color 0.25s ease, color 0.25s ease;
@@ -670,30 +623,30 @@ def display_faq_section():
         }}
         .faq-question:hover {{ background-color: {BACKGROUND_COLOR_LIGHT_GRAY}; }}
         .faq-question::marker, .faq-question::-webkit-details-marker {{ display: none; }}
-        .faq-question::before {{ /* 커스텀 마커 (FontAwesome 아이콘 등으로 대체 가능) */
-            content: '+'; /* 닫혔을 때 */
+        .faq-question::before {{
+            content: '+';
             position: absolute; right: 30px; top: 50%;
             transform: translateY(-50%) rotate(0deg);
-            color: {PRIMARY_COLOR_DARK}; font-size: 1.5em; /* 아이콘 크기 */
-            font-weight: 300; /* 가늘게 */
-            transition: transform 0.3s ease, content 0.3s ease; /* content 트랜지션은 일반적으로 안됨, JS 필요 */
+            color: {PRIMARY_COLOR_DARK}; font-size: 1.5em;
+            font-weight: 300;
+            transition: transform 0.3s ease, content 0.3s ease;
         }}
         .faq-item[open] .faq-question::before {{
-            content: '−'; /* 열렸을 때 */
-            transform: translateY(-50%) rotate(0deg); /* 회전 불필요 */
+            content: '−';
+            transform: translateY(-50%) rotate(0deg);
         }}
         .faq-answer {{
-            padding: 25px 30px 30px 30px; /* 패딩 조정 (상단은 질문과 겹치지 않게) */
-            font-size: 1.05rem; /* 크기 증가 */
+            padding: 25px 30px 30px 30px;
+            font-size: 1.05rem;
             color: var(--text-secondary); line-height: 1.8;
             background-color: var(--white-color);
-            border-top: 1px solid var(--border-color); /* 답변과 질문 구분선 */
+            border-top: 1px solid var(--border-color);
         }}
         .faq-answer p {{ margin-bottom: 18px; }}
         .faq-answer p:last-child {{ margin-bottom: 0; }}
         .faq-answer a {{
             color: {PRIMARY_COLOR_DARK}; text-decoration: none; font-weight: 600;
-            border-bottom: 2px solid {PRIMARY_COLOR_LIGHT}; /* 밑줄 스타일 변경 */
+            border-bottom: 2px solid {PRIMARY_COLOR_LIGHT};
             padding-bottom: 1px;
             transition: color 0.2s ease, border-bottom-color 0.2s ease;
         }}
@@ -715,7 +668,7 @@ def display_faq_section():
             <details class="faq-item">
                 <summary class="faq-question">지원 신청서 양식은 어디서 다운로드 받을 수 있나요?</summary>
                 <div class="faq-answer">
-                    <p>본 페이지의 <a href="#section-application-method">신청 양식 다운로드 칸 내(클릭)</a> ‘[첨부1] 참가신청서’와 ‘[첨부2] 개인정보동의서’(총 2개 파일)에서 다운로드 가능합니다.</p>
+                    <p>본 페이지의 <a href="#section-application-method">신청 양식 다운로드 칸 내(클릭)</a>에서 다운로드 가능합니다.</p>
                 </div>
             </details>
             <details class="faq-item">
@@ -742,7 +695,6 @@ def display_contact_section():
     contact_email = "kcpassinvest@gmail.com"
     phone_number = "02-499-5111"
     operator_name = "프로그램 운영 사무국 (MYSC)"
-    # (문의처 HTML 및 내부 CSS는 이전 답변과 동일하게 유지 - 구조 변경 없음)
     section_style = f"""
     <style>
         #section-contact {{ padding: 100px 25px; background-color: var(--white-color); color: var(--text-primary); font-family: 'Pretendard', sans-serif; text-align: center; position: relative; overflow: hidden; }}
@@ -775,7 +727,6 @@ def display_contact_section():
 
 # --- 푸터 ---
 def display_footer():
-    # (푸터 HTML 및 내부 CSS는 이전 답변과 동일하게 유지 - 로고 가시성 개선 시도됨)
     footer_html = f"""
     <style>
         .page-footer {{ background-color: var(--background-dark-gray); color: var(--text-muted); padding: 70px 25px; text-align: center; font-size: 1rem; line-height: 1.75; border-top: 1px solid #444; }}
