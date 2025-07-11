@@ -2,7 +2,6 @@ import streamlit as st
 import base64
 from pathlib import Path
 
-# --- 페이지 설정 ---
 st.set_page_config(
     page_title="2025 사회서비스 투자 교류회",
     page_icon="📈",
@@ -10,7 +9,6 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# --- 글로벌 스타일 및 CI 색상 정의 ---
 PRIMARY_COLOR = "#8BC34A"
 PRIMARY_COLOR_LIGHT = "#AED581"
 PRIMARY_COLOR_DARK = "#689F38"
@@ -27,14 +25,9 @@ BOX_SHADOW_DARK = "0 8px 16px rgba(0,0,0,0.15)"
 
 HEADER_HEIGHT_PX = 70
 
-# --- 수정된 링크 ---
-# 실제 구글폼 링크
 GOOGLE_FORM_URL = "https://forms.gle/7tPQ2fEykJKYBtzi7"
-# [수정됨] 실제 신청서식 보기 링크 (가장 안정적인 방식)
 APPLICATION_FORM_VIEW_URL = "https://docs.google.com/document/d/1v2skE3Lrkk9FHeAZyFgBWPufGhduFQ9Q/edit?usp=sharing"
 
-
-# --- 이미지 Base64 인코딩 함수 ---
 def image_to_data_uri(file_path_str):
     file_path = Path(file_path_str)
     if not file_path.is_file(): return None
@@ -47,12 +40,10 @@ def image_to_data_uri(file_path_str):
         return f"data:{mime_type};base64,{encoded_string}"
     except Exception: return None
 
-# 로고 파일명을 실제 파일명으로 확인하고, 파일이 코드 실행 위치에 있거나 정확한 경로를 지정해야 합니다.
 LOGO_MOHW_DATA_URI = image_to_data_uri("mohw_logo.png")
 LOGO_KSSI_DATA_URI = image_to_data_uri("kssi_logo.png")
 LOGO_MYSC_DATA_URI = image_to_data_uri("mysc_logo.png")
 
-# --- 고정 헤더, FAB 및 전역 스타일 ---
 def inject_global_styles_and_header():
     logos_html = ""
     if LOGO_MOHW_DATA_URI: logos_html += f'<img src="{LOGO_MOHW_DATA_URI}" alt="보건복지부" class="header-logo">'
@@ -213,7 +204,6 @@ def inject_global_styles_and_header():
     """
     st.markdown(global_styles, unsafe_allow_html=True)
 
-# --- 1. 히어로 섹션 ---
 def display_hero_section():
     first_event_date = "2025년 8월 4일(월) 13:30"
     first_event_theme = "돌봄의 공백을 채우는 지역 상생 사회서비스"
@@ -309,8 +299,6 @@ def display_hero_section():
     """
     st.markdown(hero_html, unsafe_allow_html=True)
 
-
-# --- 2. 행사 소개 및 목적 ---
 def display_introduction_section():
     intro_html = f"""
     <style>
@@ -344,7 +332,6 @@ def display_introduction_section():
     """
     st.markdown(intro_html, unsafe_allow_html=True)
 
-# --- 3. 참가 안내 (신청 대상) ---
 def display_participation_guide_section():
     guide_html = f"""
     <style>
@@ -374,7 +361,6 @@ def display_participation_guide_section():
         .guide-card-title {{ font-size: 1.7rem; font-weight: 700; color: var(--primary-color-dark); margin-bottom: 18px; display: flex; align-items: center; }}
         .guide-card-title .title-icon {{ font-size: 2rem; margin-right: 15px; color: var(--primary-color); }}
         .guide-card-description {{ font-size: 1rem; color: var(--text-secondary); margin-bottom: 28px; line-height: 1.75; flex-grow: 1; }}
-        /* [수정됨] 안내 문구 스타일 추가 */
         .participation-notice {{
             text-align: center;
             margin-top: 40px;
@@ -395,14 +381,12 @@ def display_participation_guide_section():
                     <p class="guide-card-description">홍보테이블을 통해 기업의 비즈니스 모델/임팩트 홍보 투자자·유관기관과의 네트워킹을 희망하는 사회서비스 기업</p>
                 </div>
             </div>
-            {/* [수정됨] 안내 문구 위치 및 태그 수정 */}
             <p class="participation-notice">*행사 참관을 희망하는 경우 별도 신청이 필요하며, 중앙사회서비스원 홈페이지 공지사항을 통해 신청 방법 확인</p>
         </div>
     </section>
     """
     st.markdown(guide_html, unsafe_allow_html=True)
 
-# --- 4. 세부 행사 일정 (예시) ---
 def display_event_composition_section():
     composition_html = f"""
     <style>
@@ -439,7 +423,6 @@ def display_event_composition_section():
     """
     st.markdown(composition_html, unsafe_allow_html=True)
 
-# --- 5. 2025년 투자 교류회 연간 일정 ---
 def display_annual_schedule_section():
     STATUS_COLOR_SCHEDULED = TEXT_COLOR_MUTED
     event3_details = "복지, 보건·의료, 교육, 고용, 주거, 문화, 환경의 분야에서 국민의 삶을 HEAL하는 사회서비스 기업을 지원합니다."
@@ -496,7 +479,6 @@ def display_annual_schedule_section():
     """
     st.markdown(annual_schedule_html, unsafe_allow_html=True)
 
-# --- 6. 참가 신청 방법 ---
 def display_application_method_section():
     application_note = "※ 교류회 주제 및 장소 여건에 따라 선착순 마감될 수 있으며, 선정 기업(기관) 별도 통보 예정"
     application_html = f"""
@@ -579,7 +561,6 @@ def display_application_method_section():
     """
     st.markdown(application_html, unsafe_allow_html=True)
 
-# --- 7. FAQ 섹션 ---
 def display_faq_section():
     faq_html = f"""
     <style>
@@ -690,7 +671,6 @@ def display_faq_section():
     """
     st.markdown(faq_html, unsafe_allow_html=True)
 
-# --- 8. 문의처 ---
 def display_contact_section():
     contact_email = "kcpassinvest@gmail.com"
     phone_number = "02-499-5111"
@@ -725,7 +705,6 @@ def display_contact_section():
     """
     st.markdown(section_style, unsafe_allow_html=True)
 
-# --- 푸터 ---
 def display_footer():
     footer_html = f"""
     <style>
@@ -752,9 +731,6 @@ def display_footer():
     """
     st.markdown(footer_html, unsafe_allow_html=True)
 
-# ===============================================
-# === 메인 실행 로직 ===
-# ===============================================
 def main():
     inject_global_styles_and_header()
     display_hero_section()
