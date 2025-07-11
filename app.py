@@ -26,10 +26,13 @@ BOX_SHADOW_MEDIUM = "0 6px 12px rgba(0, 0, 0, 0.1)"
 BOX_SHADOW_DARK = "0 8px 16px rgba(0,0,0,0.15)"
 
 HEADER_HEIGHT_PX = 70
-# 실제 구글폼 링크로 변경해야 합니다.
-GOOGLE_FORM_URL = "https://forms.gle/your_google_form_link_here" # 예시 링크
-# 실제 노션 페이지 또는 파일 다운로드 링크로 변경해야 합니다.
-NOTION_PAGE_URL = "https://www.example.com/downloads" # 예시 링크
+
+# --- 수정된 링크 ---
+# 실제 구글폼 링크
+GOOGLE_FORM_URL = "https://forms.gle/7tPQ2fEykJKYBtzi7"
+# 실제 신청서식 다운로드 링크 (Google Docs 직접 다운로드)
+APPLICATION_FORM_DOWNLOAD_URL = "https://docs.google.com/document/d/1v2skE3Lrkk9FHeAZyFgBWPufGhduFQ9Q/export?format=docx"
+
 
 # --- 이미지 Base64 인코딩 함수 ---
 def image_to_data_uri(file_path_str):
@@ -186,19 +189,19 @@ def inject_global_styles_and_header():
             border-left: 5px solid {PRIMARY_COLOR_LIGHT};
         }}
         .required-docs-section h4 {{ /* Step 2 제목 */
-            font-size: 1.6rem; font-weight: 700; color: {PRIMARY_COLOR_DARK}; 
+            font-size: 1.6rem; font-weight: 700; color: {PRIMARY_COLOR_DARK};
             margin-bottom: 25px; text-align: center;
         }}
         .required-docs-section h5 {{ /* 각 참가 유형 제목 */
-            font-size: 1.2rem; font-weight: 600; color: var(--text-primary); 
+            font-size: 1.2rem; font-weight: 600; color: var(--text-primary);
             margin-top: 20px; margin-bottom: 10px;
         }}
         .required-docs-section ul {{
-            list-style-type: disc; padding-left: 20px; margin-bottom: 15px; 
+            list-style-type: disc; padding-left: 20px; margin-bottom: 15px;
             font-size: 1.05rem; color: var(--text-secondary);
         }}
         .required-docs-section li {{ margin-bottom: 8px; }}
-        .required-docs-section hr {{ 
+        .required-docs-section hr {{
             margin: 25px 0; border: 0; border-top: 1px solid var(--border-color);
         }}
         .required-docs-section p.notice {{ /* 하단 안내 문구 */
@@ -206,9 +209,9 @@ def inject_global_styles_and_header():
         }}
 
 
-        @media (max-width: 992px) {{ 
-            .header-nav {{ display: none; }} 
-            .header-content {{ justify-content: center; }} 
+        @media (max-width: 992px) {{
+            .header-nav {{ display: none; }}
+            .header-content {{ justify-content: center; }}
             /* 참가 안내 카드 3개를 태블릿에서는 1줄 또는 2줄+1줄로 조정 필요시 */
             #section-participation-guide .guide-card-row {{ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }}
         }}
@@ -224,7 +227,7 @@ def inject_global_styles_and_header():
         }}
     </style>
     <div class="fixed-header"><div class="header-content"><div class="header-logo-group">{logos_html}</div><nav class="header-nav">{nav_html_elements}</nav></div></div>
-    <a href="https://forms.gle/HLUu8cwfU4STHgF16" target="_blank" class="fab"><span class="fab-icon">📝</span> 참가 신청하기</a>
+    <a href="{GOOGLE_FORM_URL}" target="_blank" class="fab"><span class="fab-icon">📝</span> 참가 신청하기</a>
     """
     st.markdown(global_styles, unsafe_allow_html=True)
 
@@ -317,7 +320,7 @@ def display_hero_section():
             <p><span class="info-label"></span>장소: 대전테크노파크 디스테이션 10층 <span class="deadline"></span></p>
         </div>
         <div class="hero-cta-button-container">
-            <a href="https://forms.gle/HLUu8cwfU4STHgF16" class="hero-cta-button custom-button">
+            <a href="{GOOGLE_FORM_URL}" target="_blank" class="hero-cta-button custom-button">
                 {hero_cta_button_text}
             </a>
         </div>
@@ -363,11 +366,11 @@ def display_introduction_section():
                 <p>보건복지부, 중앙사회서비스원, 그리고 엠와이소셜컴퍼니(MYSC)가 함께 하는 <br> 2025 사회서비스 투자 교류회는 사회서비스 분야의 혁신 기업들이 투자 유치 기회를 확대하고,  <br> 투자자 및 유관기관과의 긴밀한 네트워킹을 통해 실질적인 성장을 도모할 수 있도록 마련된 <br> 연결의 장입니다.</p>
                 <p>다양한 사회서비스 기업을 발굴하고 임팩트 투자 연계를 통해  기업의 스케일업을 지원하며,<br> 궁극적으로 국민 모두에게 고품질의 사회서비스가 제공될 수 있는 <br> 건강한 생태계 조성을 목표로 합니다.</p>
                  <div class="organizers-section">
-                     <div class="organizer-logos-flex">
-                         <div class="organizer-logo-item">{f'<img src="{LOGO_MOHW_DATA_URI}" alt="보건복지부">' if LOGO_MOHW_DATA_URI else ""}</div>
-                         <div class="organizer-logo-item">{f'<img src="{LOGO_KSSI_DATA_URI}" alt="중앙사회서비스원">' if LOGO_KSSI_DATA_URI else ""}</div>
-                         <div class="organizer-logo-item">{f'<img src="{LOGO_MYSC_DATA_URI}" alt="엠와이소셜컴퍼니(MYSC)">' if LOGO_MYSC_DATA_URI else ""}</div>
-                     </div>
+                         <div class="organizer-logos-flex">
+                              <div class="organizer-logo-item">{f'<img src="{LOGO_MOHW_DATA_URI}" alt="보건복지부">' if LOGO_MOHW_DATA_URI else ""}</div>
+                              <div class="organizer-logo-item">{f'<img src="{LOGO_KSSI_DATA_URI}" alt="중앙사회서비스원">' if LOGO_KSSI_DATA_URI else ""}</div>
+                              <div class="organizer-logo-item">{f'<img src="{LOGO_MYSC_DATA_URI}" alt="엠와이소셜컴퍼니(MYSC)">' if LOGO_MYSC_DATA_URI else ""}</div>
+                         </div>
                  </div>
             </div>
         </div>
@@ -414,7 +417,7 @@ def display_participation_guide_section():
     <section id="section-participation-guide" class="section">
         <h2 class="section-title">참가 유형</h2>
         <div class="participation-layout-wrapper">
-            <div class="guide-card-row"> 
+            <div class="guide-card-row">
                 <div class="guide-card ir-presentation">
                     <h3 class="guide-card-title"><span class="title-icon">📢</span> IR 발표 기업</h3>
                     <p class="guide-card-description">IR 발표를 통해 투자 유치 기회 확대를 필요로 하는 사회서비스 기업</p>
@@ -422,17 +425,17 @@ def display_participation_guide_section():
                 <div class="guide-card">
                     <h3 class="guide-card-title"><span class="title-icon">📰</span> 홍보테이블 운영 기업</h3>
                     <p class="guide-card-description">홍보테이블을 통해 기업의 비즈니스 모델/임팩트 홍보 투자자·유관기관과의 네트워킹을 희망하는 사회서비스 기업</p>
-              </div> 
-  *행사 참관을 희망하는 경우 별도 신청이 필요하며, 중앙사회서비스원 홈페이지 공지사항을 통해 신청 방법 확인
+                </div>
+ *행사 참관을 희망하는 경우 별도 신청이 필요하며, 중앙사회서비스원 홈페이지 공지사항을 통해 신청 방법 확인
     </section>
     """
     st.markdown(guide_html, unsafe_allow_html=True)
 
-#밋업 기업 주석 처리 
-       # <div class="guide-card">
-         # <h3 class="guide-card-title"><span class="title-icon">🤝</span> 투자자 밋업 기업</h3>
-         # <p class="guide-card-description">라운드 테이블 미팅(16:00~17:20)에 <br> 참가하여 투자자와의 1:1 투자 상담 및 <br> 밋업을 희망하는 사회서비스 기업</p>
-     #   </div>
+#밋업 기업 주석 처리
+    # <div class="guide-card">
+        # <h3 class="guide-card-title"><span class="title-icon">🤝</span> 투자자 밋업 기업</h3>
+        # <p class="guide-card-description">라운드 테이블 미팅(16:00~17:20)에 <br> 참가하여 투자자와의 1:1 투자 상담 및 <br> 밋업을 희망하는 사회서비스 기업</p>
+    #  </div>
 
 # --- 4. 세부 행사 일정 (예시) ---
 def display_event_composition_section():
@@ -472,7 +475,6 @@ def display_event_composition_section():
     """
     st.markdown(composition_html, unsafe_allow_html=True)
 
-# --- 5. 2025년 투자 교류회 연간 일정 ---
 # --- 5. 2025년 투자 교류회 연간 일정 ---
 def display_annual_schedule_section():
     STATUS_COLOR_SCHEDULED = TEXT_COLOR_MUTED
@@ -534,44 +536,6 @@ def display_annual_schedule_section():
 # --- 6. 참가 신청 방법 ---
 def display_application_method_section():
     application_note = "※ 교류회 주제 및 장소 여건에 따라 선착순 마감될 수 있으며, 선정 기업(기관) 별도 통보 예정"
-    application_deadline_text = "2025년 6월 9일(금)까지"
-
-    # 사용자 요청: 제출 서류 안내 부분 스타일 적용되도록 수정
-    # 클래스명 required-docs-section 으로 통일하고, 해당 클래스에 대한 스타일은 inject_global_styles_and_header 함수 내 CSS에 정의함.
-    required_docs_html = f"""
-    <div class="required-docs-section">
-        <h4>Step 2: 참가 유형별 제출 서류 안내</h4>
-        <div>
-            <h5>📢 IR 발표 기업</h5>
-            <span>발표 기업의 경우 향후 발표 영상이 제작되어 중앙사회서비스원 유튜브에 업로드될 예정입니다</span>
-            <ul>
-                <li>참가신청서 (발표기업용)</li>
-                <li>기업 IR 자료(발표 시간 7분, 질의응답 3분)</li>
-                <li>사업자등록증 사본</li>
-                <li>개인정보 수집·이용 동의서</li>
-
-            </ul>
-            <hr>
-            <h5>📰 홍보테이블 운영 기업</h5>
-            <ul>
-                <li>참가신청서 (홍보기업용)</li>
-                <li>기업 IR 자료</li>
-                <li>기업 정보 자료 (홍보물 제작에 필요한 기본 정보)</li>
-                <li>사업자등록증 사본</li>
-                <li>개인정보 수집·이용 동의서</li>
-            </ul>
-            <hr>
-            <h5>🤝 투자자 밋업 기업</h5>
-            <ul>
-                <li>참가신청서 (해당 시, 또는 온라인 신청으로 갈음)</li>
-                <li>기업 IR 자료</li>
-                <li>사업자등록증 사본</li>
-                <li>개인정보 수집·이용 동의서</li>
-            </ul>
-            <p class="notice">* 행사 참관을 희망하는 경우 별도 신청 필요하며, 중앙사회서비스원 홈페이지 공지사항을 통해 신청 방법 확인</p>
-        </div>
-    </div>
-    """
 
     # (참가 신청 방법 HTML 및 내부 CSS는 이전 답변과 유사하게 유지, required_docs_html 삽입 위치 및 스타일 조정)
     application_html = f"""
@@ -604,53 +568,53 @@ def display_application_method_section():
         @media (max-width: 600px) {{ .download-links-grid {{ grid-template-columns: 1fr; }} .application-step-title {{ font-size: 1.4rem; }} .application-step p {{ font-size: 1.05rem; }} .application-deadline-highlight {{ font-size: 1.2rem; padding: 18px 25px; }} .application-notice {{ text-align: left; }} }}
     </style>
      <section id="section-application-method" class="section">
-        <h2 class="section-title">참가 신청 방법</h2>
-        <div class="application-content">
-            <div class="application-deadline-highlight">
-                2회차 참가 신청 마감: 7월 21일(월) 오후 6시까지(시간 엄수)
-            </div>
-            <div class="application-step">
-                <h3 class="application-step-title">Step 1: 참가 유형 확인 & 온라인 신청서 작성</h3>
-                <p> <strong>IR발표, 홍보테이블 운영, 투자자 밋업 </strong> 참가를 희망하시는 기업은 아래 '온라인 참가 신청하기' 버튼을 통해 <br> 신청 페이지로 이동 후, 참가 유형을 확인하고 온라인 신청서 작성</p>
-                <p><a href="https://forms.gle/HLUu8cwfU4STHgF16" target="_blank" class="form-link">➡️ 온라인 참가 신청하기 (Google Form)</a></p>
-            </div>
-            <div class="application-step">
-                <h3 class="application-step-title">Step 2: 제출 서류 준비 및 업로드</h3>
-                <p>'참가신청서 및 개인정보 동의서' 다운로드 및 작성 후 참가 유형별 제출 서류와 함께 온라인 신청서에 업로드</p>
-            </div>
-             <div class="download-area">
-                <p class="download-links-title">주요 신청 양식 다운로드</p>
-                 <span class="download-links-span">참가 유형별 참가신청서 1부와 개인정보 이용동의서 1부를 구글폼에 제출 부탁드립니다</span>
-                <div class="download-links-grid">
-                    {f'<a href="https://drive.google.com/uc?export=download&id=1sUNcIjQd6uCCc8qHdhqZjKGIvExhMsil" target="_blank" class="download-link-button"><span class="icon">📄</span>신청서식<br>(공통)</a>' if NOTION_PAGE_URL else ""}
-                </div>
-            </div>
-             <div class="required-docs-section"> 
-            <h4>Step 2: 참가 유형별 제출 서류 안내</h4>
-            <div>
-                <h5>📢 IR 발표 기업</h5>
-                <ul>
-                    <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
-                    <li>기업 IR 자료 (발표 : 7분)</li>
-                    <li>사업자등록증 사본</li>
-                </ul>
-                <hr>
-                <h5>📰 홍보테이블 운영 기업</h5>
-                <ul>
-                    <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
-                    <li>기업 IR 자료 (VC 밋업용)</li>
-                    <li>홍보물 제작에 필요한 기본 정보</li>
-                    <li>사업자등록증 사본</li>
-                </ul>
-             <p class="notice">* 참관 및 네트워킹 참가가는 본 신청 페이지를 통하지 않으며, 별도 안내될 예정입니다.</p>
-            </div>
-        </div>
-            <div>      
-            <div class="application-notice">
-                <p><strong>[유의사항]</strong><br>{application_note}</p>
-            </div>
-        </div>
-    </section>
+         <h2 class="section-title">참가 신청 방법</h2>
+         <div class="application-content">
+             <div class="application-deadline-highlight">
+                 2회차 참가 신청 마감: 7월 21일(월) 오후 6시까지(시간 엄수)
+             </div>
+             <div class="application-step">
+                 <h3 class="application-step-title">Step 1: 참가 유형 확인 & 온라인 신청서 작성</h3>
+                 <p> <strong>IR발표, 홍보테이블 운영 </strong> 참가를 희망하시는 기업은 아래 '온라인 참가 신청하기' 버튼을 통해 <br> 신청 페이지로 이동 후, 참가 유형을 확인하고 온라인 신청서 작성</p>
+                 <p><a href="{GOOGLE_FORM_URL}" target="_blank" class="form-link">➡️ 온라인 참가 신청하기</a></p>
+             </div>
+             <div class="application-step">
+                 <h3 class="application-step-title">Step 2: 제출 서류 준비 및 업로드</h3>
+                 <p>'참가신청서 및 개인정보 동의서' 다운로드 및 작성 후 참가 유형별 제출 서류와 함께 온라인 신청서에 업로드</p>
+             </div>
+              <div class="download-area">
+                  <p class="download-links-title">주요 신청 양식 다운로드</p>
+                   <span class="download-links-span">참가 유형별 참가신청서 1부와 개인정보 이용동의서 1부를 구글폼에 제출 부탁드립니다</span>
+                  <div class="download-links-grid">
+                       <a href="{APPLICATION_FORM_DOWNLOAD_URL}" target="_blank" class="download-link-button"><span class="icon">📄</span>신청서식<br>(공통)</a>
+                  </div>
+              </div>
+               <div class="required-docs-section">
+             <h4>Step 2: 참가 유형별 제출 서류 안내</h4>
+             <div>
+                 <h5>📢 IR 발표 기업</h5>
+                 <ul>
+                     <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
+                     <li>기업 IR 자료 (발표 7분, **16:9 PDF 비율로 제출, 제출 후 수정 불가**)</li>
+                     <li>사업자등록증 사본</li>
+                 </ul>
+                 <hr>
+                 <h5>📰 홍보테이블 운영 기업</h5>
+                 <ul>
+                     <li>참가신청서 및 개인정보 동의서(상단 서식)</li>
+                     <li>기업 IR 자료 (VC 밋업용, **16:9 PDF 비율로 제출, 제출 후 수정 불가**)</li>
+                     <li>홍보물 제작에 필요한 기본 정보</li>
+                     <li>사업자등록증 사본</li>
+                 </ul>
+              <p class="notice">* 참관 및 네트워킹 참가가는 본 신청 페이지를 통하지 않으며, 별도 안내될 예정입니다.</p>
+             </div>
+         </div>
+             <div>
+             <div class="application-notice">
+                 <p><strong>[유의사항]</strong><br>{application_note}</p>
+             </div>
+         </div>
+     </section>
     """
     st.markdown(application_html, unsafe_allow_html=True)
 
