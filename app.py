@@ -411,7 +411,7 @@ def display_participation_guide_section():
         .guide-card li::before {{ content: '✔'; color: var(--primary-color); position: absolute; left: 0; font-weight: bold; font-size: 1.2em; }}
     </style>
     <section id="section-participation-guide" class="section">
-        <h2 class="section-title">참가 안내</h2>
+        <h2 class="section-title">참가 유형</h2>
         <div class="participation-layout-wrapper">
             <div class="guide-card-row"> 
                 <div class="guide-card ir-presentation">
@@ -421,7 +421,12 @@ def display_participation_guide_section():
                 <div class="guide-card">
                     <h3 class="guide-card-title"><span class="title-icon">📰</span> 홍보테이블 운영 기업</h3>
                     <p class="guide-card-description">홍보테이블을 통해 기업의 비즈니스 모델/임팩트 홍보 투자자·유관기관과의 네트워킹을 희망하는 사회서비스 기업</p>
-        </div> 
+              </div> 
+              #밋업 기업 주석 처리 
+       <div class="guide-card">
+         <h3 class="guide-card-title"><span class="title-icon">🤝</span> 참관 기업</h3>
+         <p class="guide-card-description">행사 참관을 희망하는 경우 별도 신청이 필요하며, 중앙사회서비스원 홈페이지 공지사항을 통해 신청 방법 확인</p>
+      </div>
     </section>
     """
     st.markdown(guide_html, unsafe_allow_html=True)
@@ -513,7 +518,7 @@ def display_annual_schedule_section():
             <div class="event-schedule-card" style="animation-delay: 0.15s;">
                 <div class="card-header"> <span class="event-status" style="background-color:{PRIMARY_COLOR};">모집중</span> </div>
                 <h3 class="event-theme">제2회: 돌봄의 공백을 채우는 지역 상생 사회서비스</h3>
-                <p class="event-time"><span class="event-date-venue">2025. 8월 예정 / 대전 </span> </p>
+                <p class="event-time"><span class="event-date-venue">2025. 8. 4.(월) / 대전테크노파크 디스테이션 10층 </span> </p>
                 <p class="event-details">지역 사회의 특성을 반영한 맞춤형 돌봄 서비스 및 지역사회 활성화에 기여하는 <br> 기업을 발굴합니다.</p>
                 <a href="#section-application-method" class="card-apply-button custom-button button-primary">세부 정보 확인 및 신청</a>
             </div>
@@ -566,7 +571,7 @@ def display_application_method_section():
                 <li>사업자등록증 사본</li>
                 <li>개인정보 수집·이용 동의서</li>
             </ul>
-            <p class="notice">* 참관 및 네트워킹 참가가는 본 신청 페이지를 통하지 않으며, 별도 안내될 예정입니다.</p>
+            <p class="notice">* 행사 참관을 희망하는 경우 별도 신청 필요하며, 중앙사회서비스원 홈페이지 공지사항을 통해 신청 방법 확인</p>
         </div>
     </div>
     """
